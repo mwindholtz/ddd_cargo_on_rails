@@ -7,8 +7,7 @@ class CargosController < ApplicationController
 
   # GET /cargos/1
   def show
-    cargo = Cargo.find(params[:id])
-    @prez = CargoPresenter.new(cargo)
+    load_cargo
   end
 
   # GET /cargos/new
@@ -18,8 +17,7 @@ class CargosController < ApplicationController
 
   # GET /cargos/1/edit
   def edit
-    cargo = Cargo.find(params[:id])
-    @prez = CargoPresenter.new(cargo)
+    load_cargo
   end
 
   # POST /cargos
@@ -36,8 +34,8 @@ class CargosController < ApplicationController
 
   # PATCH/PUT /cargos/1
   def update
-    cargo = Cargo.find(params[:id])
-    @prez = CargoPresenter.new(cargo)
+    cargo = load_cargo
+
     if cargo.update(cargo_params)
       redirect_to cargo, notice: 'Cargo was successfully updated.'
     else
@@ -47,13 +45,17 @@ class CargosController < ApplicationController
 
   # DELETE /cargos/1
   def destroy
-    cargo = Cargo.find(params[:id])
-    @prez = CargoPresenter.new(cargo)
+    cargo = load_cargo
     cargo.destroy
     redirect_to cargos_url, notice: 'Cargo was successfully destroyed.'
   end
 
   private
+    def load_cargo
+      result = Cmds::CargoFind.new(self, params[:id]).call
+      @prez = CargoPresenter.new(result.context.cargo)
+      result.context.cargo
+    end
 
     # Only allow a trusted parameter "white list" through.
     def cargo_params 
