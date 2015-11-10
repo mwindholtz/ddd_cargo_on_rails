@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 3) do
   end
 
   create_table "itineraries", force: :cascade do |t|
-    t.string   "start_location",  null: false
-    t.string   "end_location",    null: false
-    t.datetime "arrival_time",    null: false
-    t.integer  "layover_minutes", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "start_location_id", null: false
+    t.integer  "end_location_id",   null: false
+    t.datetime "arrival_time",      null: false
+    t.integer  "layover_minutes",   null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "locations", force: :cascade do |t|

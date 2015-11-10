@@ -24,10 +24,10 @@ if Rails.env.test? || Rails.env.development?
     
     def itinerary_attrs(extra = {})
       {     
-        start_location:  'ABC',
-        end_location:    'XYZ',
-        arrival_time:    time_now + 5.days,
-        layover_minutes: (60 * 24) + 60,
+        start_location_id: singapore.id,
+        end_location_id:   long_beach.id,
+        arrival_time:      time_now + 5.days,
+        layover_minutes:   (60 * 24) + 60,
       }.merge(extra)
     end
     
