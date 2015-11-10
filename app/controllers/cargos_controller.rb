@@ -1,6 +1,5 @@
 class CargosController < ApplicationController
-  before_action :set_cargo, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /cargos
   def index
     @cargos = Cargo.all
@@ -8,23 +7,28 @@ class CargosController < ApplicationController
 
   # GET /cargos/1
   def show
+    cargo = Cargo.find(params[:id])
+    @prez = CargoPresenter.new(cargo)
   end
 
   # GET /cargos/new
   def new
-    @cargo = Cargo.new
+    @prez = CargoPresenter.new
   end
 
   # GET /cargos/1/edit
   def edit
+    cargo = Cargo.find(params[:id])
+    @prez = CargoPresenter.new(cargo)
   end
 
   # POST /cargos
   def create
-    @cargo = Cargo.new(cargo_params)
+    cargo = Cargo.new(cargo_params)
+    @prez = CargoPresenter.new(cargo)
 
-    if @cargo.save
-      redirect_to @cargo, notice: 'Cargo was successfully created.'
+    if cargo.save
+      redirect_to cargo, notice: 'Cargo was successfully created.'
     else
       render :new
     end
@@ -32,8 +36,10 @@ class CargosController < ApplicationController
 
   # PATCH/PUT /cargos/1
   def update
-    if @cargo.update(cargo_params)
-      redirect_to @cargo, notice: 'Cargo was successfully updated.'
+    cargo = Cargo.find(params[:id])
+    @prez = CargoPresenter.new(cargo)
+    if cargo.update(cargo_params)
+      redirect_to cargo, notice: 'Cargo was successfully updated.'
     else
       render :edit
     end
@@ -41,15 +47,13 @@ class CargosController < ApplicationController
 
   # DELETE /cargos/1
   def destroy
-    @cargo.destroy
+    cargo = Cargo.find(params[:id])
+    @prez = CargoPresenter.new(cargo)
+    cargo.destroy
     redirect_to cargos_url, notice: 'Cargo was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cargo
-      @cargo = Cargo.find(params[:id])
-    end
 
     # Only allow a trusted parameter "white list" through.
     def cargo_params 

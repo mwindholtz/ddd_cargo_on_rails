@@ -32,14 +32,15 @@ RSpec.describe CargosController, type: :controller do
     it "assigns the requested cargo as @cargo" do
       cargo = Cargo.create! valid_attributes
       get :show, {:id => cargo.to_param}, valid_session
-      expect(assigns(:cargo)).to eq(cargo)
+      expect(assigns(:prez)).to be_a(CargoPresenter)
+      expect(assigns(:prez).target).to eq(cargo)
     end
   end
 
   describe "GET #new" do
     it "assigns a new cargo as @cargo" do
       get :new, {}, valid_session
-      expect(assigns(:cargo)).to be_a_new(Cargo)
+      expect(assigns(:prez)).to be_a(CargoPresenter)
     end
   end
 
@@ -47,7 +48,7 @@ RSpec.describe CargosController, type: :controller do
     it "assigns the requested cargo as @cargo" do
       cargo = Cargo.create! valid_attributes
       get :edit, {:id => cargo.to_param}, valid_session
-      expect(assigns(:cargo)).to eq(cargo)
+      expect(assigns(:prez)).to be_a(CargoPresenter)
     end
   end
 
@@ -61,8 +62,8 @@ RSpec.describe CargosController, type: :controller do
 
       it "assigns a newly created cargo as @cargo" do
         post :create, {:cargo => valid_attributes}, valid_session
-        expect(assigns(:cargo)).to be_a(Cargo)
-        expect(assigns(:cargo)).to be_persisted
+        expect(assigns(:prez).target).to be_a(Cargo)
+        expect(assigns(:prez).target).to be_persisted
       end
 
       it "redirects to the created cargo" do
@@ -74,7 +75,7 @@ RSpec.describe CargosController, type: :controller do
     context "with invalid params" do
       it "assigns a newly created but unsaved cargo as @cargo" do
         post :create, {:cargo => invalid_attributes}, valid_session
-        expect(assigns(:cargo)).to be_a_new(Cargo)
+        expect(assigns(:prez).target).to be_a_new(Cargo)
       end
 
       it "re-renders the 'new' template" do
@@ -94,19 +95,19 @@ RSpec.describe CargosController, type: :controller do
         cargo = Cargo.create! valid_attributes
         put :update, {:id => cargo.to_param, :cargo => new_attributes}, valid_session
         cargo.reload
-        expect(assigns(:cargo).origin_id).to eq(99)         
+        expect(assigns(:prez).target.origin_id).to eq(99)         
       end
 
       it "assigns the requested cargo as @cargo" do
         cargo = Cargo.create! valid_attributes
         put :update, {:id => cargo.to_param, :cargo => valid_attributes}, valid_session
-        expect(assigns(:cargo)).to eq(cargo)
+        expect(assigns(:prez).target).to eq(cargo)
       end
 
       it "redirects to the cargo" do
         cargo = Cargo.create! valid_attributes
         put :update, {:id => cargo.to_param, :cargo => valid_attributes}, valid_session
-        expect(response).to redirect_to(cargo)
+        expect(response).to redirect_to(assigns(:prez).target)
       end
     end
 
@@ -114,7 +115,7 @@ RSpec.describe CargosController, type: :controller do
       it "assigns the cargo as @cargo" do
         cargo = Cargo.create! valid_attributes
         put :update, {:id => cargo.to_param, :cargo => invalid_attributes}, valid_session
-        expect(assigns(:cargo)).to eq(cargo)
+        expect(assigns(:prez).target).to eq(cargo)
       end
 
       # it "re-renders the 'edit' template" do

@@ -4,7 +4,7 @@ RSpec.describe "cargos/new", type: :view do
   include_context 'exemplar'
 
   before(:each) do
-    assign(:cargo, exemplar.cargo)
+    @prez  = assign(:prez, CargoPresenter.new)    
   end
 
   # it "renders new cargo form" do

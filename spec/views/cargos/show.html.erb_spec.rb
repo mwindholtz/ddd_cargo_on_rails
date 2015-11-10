@@ -4,7 +4,7 @@ RSpec.describe "cargos/show", type: :view do
   include_context 'exemplar'
 
   before(:each) do
-    @cargo = assign(:cargo, exemplar.cargo)
+    @prez  = assign(:prez, CargoPresenter.new(exemplar.cargo))    
   end
 
   it "renders attributes in <p>" do

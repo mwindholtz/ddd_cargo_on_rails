@@ -1,10 +1,10 @@
-<%= form_for(@cargo) do |f| %>
-  <% if @cargo.errors.any? %>
+<%= form_for(@prez.target) do |f| %>
+  <% if @prez.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@cargo.errors.count, "error") %> prohibited this cargo from being saved:</h2>
+      <h2><%= pluralize(@prez.errors.count, "error") %> prohibited this cargo from being saved:</h2>
 
       <ul>
-      <% @cargo.errors.full_messages.each do |message| %>
+      <% @prez.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>    
