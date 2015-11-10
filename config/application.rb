@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'rspec/core' if Rails.env.test? # needed before RSpec.configure
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,7 +21,20 @@ module Tvd
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.generators do |g|
+      g.test_framework :rspec
+      g.orm :active_record  
+      g.template_engine :erb
+    end
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    config.active_record.timestamped_migrations = false
+		    
+    # Add additional load paths for your own custom dirs
+		config.autoload_paths += %W( #{Rails.root}/app/cmds
+                              )
+		
   end
 end
