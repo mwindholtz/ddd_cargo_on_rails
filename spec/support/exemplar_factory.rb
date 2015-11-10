@@ -4,7 +4,7 @@ if Rails.env.test? || Rails.env.development?
     module_function
     
     def cargo(extra={})
-      attrs = cargo_attrs(extra)   
+      attrs = cargo_attrs(extra)  
       Cargo.create!( attrs )
     end
 
@@ -12,8 +12,7 @@ if Rails.env.test? || Rails.env.development?
       {
         origin_id:        singapore.id,
         destination_id:   long_beach.id,
-        arrival_deadline: today + 6, 
-        weight_kg:        10_000,
+        arrival_deadline_on: today + 6, 
       }.merge(extra)
     end 
 
@@ -91,7 +90,7 @@ if Rails.env.test? || Rails.env.development?
       Leg.find_or_create_by(
         load_location_id:   seattle.id,
         load_time:          (time_now + 30.days),
-        unload_location_id: denver.id,
+        unload_location_id: dallas.id,
         unload_time:        (time_now + 32.days), 
         )
     end

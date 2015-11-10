@@ -8,7 +8,6 @@ RSpec.describe Cargo, type: :model do
     When(:result)           { Cargo.create!( ExemplarFactory.cargo_attrs) }
     Then                    { Cargo.count == original_count + 1 }
     And                     { result.origin_id == singapore.id }
-    And                     { result.weight_kg == 10_000 }    
         
   end
 end

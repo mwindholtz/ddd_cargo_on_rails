@@ -14,12 +14,11 @@
 ActiveRecord::Schema.define(version: 4) do
 
   create_table "cargos", force: :cascade do |t|
-    t.integer  "origin_id",        null: false
-    t.integer  "destination_id",   null: false
-    t.datetime "arrival_deadline", null: false
-    t.integer  "weight_kg",        null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "origin_id",           null: false
+    t.integer  "destination_id",      null: false
+    t.datetime "arrival_deadline_on", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "itineraries", force: :cascade do |t|
