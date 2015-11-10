@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Cargo, type: :model do
   
-  
   context "create" do
     Given!(:original_count) { Cargo.count }
     When(:result)           { Cargo.create!( ExemplarFactory.cargo_attrs) }
