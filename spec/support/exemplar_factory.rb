@@ -10,13 +10,12 @@ if Rails.env.test? || Rails.env.development?
 
     def cargo_attrs(extra ={})
       {
-        origin_id:        1,
-        destination_id:   2,
+        origin_id:        singapore.id,
+        destination_id:   long_beach.id,
         arrival_deadline: today + 6, 
         weight_kg:        10_000,
       }.merge(extra)
     end 
-
 
     def itinerary(extra = {})
       attrs = itinerary_attrs(extra)
@@ -32,13 +31,33 @@ if Rails.env.test? || Rails.env.development?
       }.merge(extra)
     end
     
-    def today
-      Date.today
-    end                 
+    def singapore
+      Location.find_or_create_by(code: 'SGP', name: 'Singapore')  
+    end
+
+    def hong_kong
+      Location.find_or_create_by(code: 'HKG', name: 'Hong Kong')  
+    end
+
+    def seattle
+      Location.find_or_create_by(code: 'SEA', name: 'Seattle')      
+    end
+
+    def long_beach
+      Location.find_or_create_by(code: 'LGB', name: 'Long Beach')  
+    end
+
+    def dallas
+      Location.find_or_create_by(code: 'DFW', name: 'Dallas') 
+    end
     
     def time_now
       Time.now
     end                 
-    
+                        
+    def today
+      Date.today
+    end                 
+                                                                
   end # class ExemplarFactory
 end # if Rails.env.test?

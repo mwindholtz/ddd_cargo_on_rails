@@ -10,4 +10,3 @@ RSpec.describe Itinerary, type: :model do
         
   end
 end
-
