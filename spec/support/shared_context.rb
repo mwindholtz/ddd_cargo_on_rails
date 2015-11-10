@@ -4,13 +4,13 @@ RSpec.shared_context 'stub-controller' do
 end
 
 RSpec.shared_context "exemplar"  do   
-  Given(:exemplar)   { ExemplarFactory.new }
+  Given(:exemplar)   { ExemplarFactory }
 
-  Given(:singapore)  { ExemplarFactory.singapore  } 
-  Given(:hong_kong)  { ExemplarFactory.hong_kong  } 
-  Given(:seattle)    { ExemplarFactory.seattle    } 
-  Given(:long_beach) { ExemplarFactory.long_beach } 
-  Given(:dallas)     { ExemplarFactory.dallas     } 
+  Given(:singapore)  { exemplar.singapore  } 
+  Given(:hong_kong)  { exemplar.hong_kong  } 
+  Given(:seattle)    { exemplar.seattle    } 
+  Given(:long_beach) { exemplar.long_beach } 
+  Given(:dallas)     { exemplar.dallas     } 
   
 end
 

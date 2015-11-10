@@ -50,10 +50,55 @@ if Rails.env.test? || Rails.env.development?
     def dallas
       Location.find_or_create_by(code: 'DFW', name: 'Dallas') 
     end
+
+    def hong_kong_to_long_beach_leg
+      Leg.find_or_create_by(
+        load_location_id:   hong_kong.id,
+        load_time:          (time_now + 1.day),
+        unload_location_id: long_beach.id,
+        unload_time:        (time_now + 10.days), 
+        )
+    end
     
+    def long_beach_to_seattle_leg
+      Leg.find_or_create_by(
+        load_location_id:   long_beach.id,
+        load_time:          (time_now + 11.days),
+        unload_location_id: seattle.id,
+        unload_time:        (time_now + 14.days), 
+        )
+    end
+    
+    def seattle_to_singapore_leg
+      Leg.find_or_create_by(
+        load_location_id:   seattle.id,
+        load_time:          (time_now + 16.days),
+        unload_location_id: singapore.id,
+        unload_time:        (time_now + 26.days), 
+        )
+    end
+    
+    def singapore_to_hong_kong_leg
+      Leg.find_or_create_by(
+        load_location_id:   singapore.id,
+        load_time:          (time_now + 16.days),
+        unload_location_id: hong_kong.id,
+        unload_time:        (time_now + 26.days), 
+        )
+    end
+    
+    def seattle_to_denver_leg
+      Leg.find_or_create_by(
+        load_location_id:   seattle.id,
+        load_time:          (time_now + 30.days),
+        unload_location_id: denver.id,
+        unload_time:        (time_now + 32.days), 
+        )
+    end
+
     def time_now
       Time.now
-    end                 
+    end   
                         
     def today
       Date.today

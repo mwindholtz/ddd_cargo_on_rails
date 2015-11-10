@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 4) do
 
   create_table "cargos", force: :cascade do |t|
     t.integer  "origin_id",        null: false
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 3) do
     t.integer  "layover_minutes",   null: false
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "legs", force: :cascade do |t|
+    t.integer  "load_location_id",   null: false
+    t.datetime "load_time",          null: false
+    t.integer  "unload_location_id", null: false
+    t.datetime "unload_time",        null: false
   end
 
   create_table "locations", force: :cascade do |t|
