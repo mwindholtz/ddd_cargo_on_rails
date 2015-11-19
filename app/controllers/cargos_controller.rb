@@ -33,12 +33,11 @@ class CargosController < ApplicationController
 
   # PATCH/PUT /cargos/1
   def update
-    @prez = Cmds::CargoFind.new(params[:id]).call   
-    cargo = @prez.target
-    if cargo.update(cargo_params)
-      redirect_to cargo, notice: 'Cargo was successfully updated.'
-    else
+    @prez = Cmds::CargoUpdate.new(params[:id], cargo_params).call   
+    if @prez.errors.present?
       render :edit
+    else
+      redirect_to @prez.target, notice: 'Cargo was successfully updated.'
     end
   end
 

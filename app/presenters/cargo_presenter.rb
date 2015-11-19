@@ -7,12 +7,12 @@ class CargoPresenter
   def initialize(cargo=nil)
     @cargo = cargo || Cargo.new
     unless @cargo.new_record?
-      @origin_code =  @cargo.origin.code 
-      @destination_code = @cargo.destination.code
+      @origin_code =  @cargo.origin.try(:code)
+      @destination_code = @cargo.destination.try(:code)
       @arrival_deadline_on = @cargo.arrival_deadline_on
     end
   end
-
+  
   def target
     @cargo
   end
