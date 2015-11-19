@@ -18,9 +18,9 @@
         <% cargo_prez.values.each do | value | %>
           <td><%= value %></td>
         <% end %>
-        <td><%= link_to 'Show', cargo_prez.target %></td>
-        <td><%= link_to 'Edit', edit_cargo_path(cargo_prez.target) %></td>
-        <td><%= link_to 'Destroy', cargo_prez.target, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= cargo_prez.link_to_show %></td>
+        <td><%= cargo_prez.link_to_edit %></td>
+        <td><%= cargo_prez.link_to_destroy %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,5 +28,5 @@
 
 <br>
 
-<%= link_to 'New Cargo', new_cargo_path %>
+<%= @prez.link_to_new %>
 

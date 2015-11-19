@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @prez.target %> |
-<%= link_to 'Back', cargos_path %>
+<%= @prez.link_to_show %> |
+<%= @prez.link_to_index('Back') %>
