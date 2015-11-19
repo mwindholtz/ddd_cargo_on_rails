@@ -26,7 +26,7 @@
     <% prez.each do |cargo_prez| %>
       <tr>            
         <% cargo_prez.values.each do | value | %>
-          <td><%= value %></td>
+          <td><%= exhibit(value, self) %> </td> 
         <% end %>
         <td><%= cargo_prez.link_to_show %></td>
         <td><%= cargo_prez.link_to_edit %></td>

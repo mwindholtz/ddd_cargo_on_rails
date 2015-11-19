@@ -1,14 +1,14 @@
 class CargoPresenter          
   include LinkToHelpers
 
-  ATTRS =  [:origin_code,  :destination_code,  :arrival_deadline_on]
+  ATTRS =  [:origin,  :destination,  :arrival_deadline_on]
   attr_reader *ATTRS
   
   def initialize(cargo=nil)
     @cargo = cargo || Cargo.new
     unless @cargo.new_record?
-      @origin_code =  @cargo.origin.try(:code)
-      @destination_code = @cargo.destination.try(:code)
+      @origin              =  @cargo.origin
+      @destination         = @cargo.destination
       @arrival_deadline_on = @cargo.arrival_deadline_on
     end
   end
