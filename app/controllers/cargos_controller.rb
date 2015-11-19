@@ -2,8 +2,8 @@ class CargosController < ApplicationController
   
   # GET /cargos
   def index
-    @prez = CargoListPresenter.new(Cargo.all)
-  end
+    @prez = Cmds::CargoQuery.new.call 
+  end 
 
   # GET /cargos/1
   def show
@@ -52,7 +52,7 @@ class CargosController < ApplicationController
 
   private
     def load_cargo
-      result = Cmds::CargoFind.new(self, params[:id]).call
+      result = Cmds::CargoFind.new(params[:id]).call
       @prez = CargoPresenter.new(result.context.cargo)
       result.context.cargo
     end

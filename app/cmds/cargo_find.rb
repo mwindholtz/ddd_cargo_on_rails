@@ -4,9 +4,9 @@ module Cmds
  
     attr_reader :cargo_id
   
-    def initialize(controller, cargo_id)
+    def initialize(cargo_id)
       @cargo_id = cargo_id             
-      super(controller)
+      super()
     end
 
     def call
