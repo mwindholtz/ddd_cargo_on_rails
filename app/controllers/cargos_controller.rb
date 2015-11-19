@@ -1,8 +1,8 @@
 class CargosController < ApplicationController
   
   # GET /cargos
-  def index
-    @prez = Cmds::CargoQuery.new.call 
+  def index                      
+    @prez = Cmds::CargoQuery.new(search_criteria).call 
   end 
 
   # GET /cargos/1
@@ -52,4 +52,14 @@ class CargosController < ApplicationController
     def cargo_params 
       params.require(:cargo).permit(:origin_id, :destination_id, :arrival_deadline_on)
     end
+    
+    def search_criteria
+      criteria = Criteria.new
+      if q = params[:q]    
+        destination_id = (q||'').strip.to_i
+        criteria.where("destination_id = '#{destination_id}'")
+      end
+      criteria
+    end
+
 end

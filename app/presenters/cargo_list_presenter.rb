@@ -3,7 +3,7 @@ class CargoListPresenter < DelegateClass(Array)
   include LinkToHelpers
     
   def initialize(items)
-    super(items.map{|item| CargoPresenter.new(item)} )
+    super(items.to_a.map{|item| CargoPresenter.new(item)} )
   end
 
   def titles      

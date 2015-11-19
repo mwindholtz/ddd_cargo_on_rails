@@ -28,6 +28,18 @@ RSpec.describe CargosController, type: :controller do
     end
   end
 
+  describe "GET #index many cargos arriving long_beach" do
+    
+    it "query cargos arriving longbeach" do
+      expected = []
+      expected << exemplar.cargo(origin_id: singapore.id)
+      expected << exemplar.cargo(origin_id: hong_kong.id)
+      exemplar.cargo(origin_id: dallas.id, destination_id: seattle.id)
+      get :index, { q: "#{long_beach.id}" }, valid_session 
+      expect(assigns(:prez).count).to eq(2)
+    end
+  end
+
   describe "GET #show" do
     it "assigns the requested cargo as @cargo" do
       cargo = Cargo.create! valid_attributes
