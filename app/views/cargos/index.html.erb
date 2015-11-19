@@ -15,7 +15,7 @@
 <table>
   <thead>
     <tr>
-      <% @prez.titles.each do |title| %>
+      <% prez.titles.each do |title| %>
         <th><%= title %></th>
       <% end  %>
       <th colspan="3"></th>
@@ -23,7 +23,7 @@
   </thead>
 
   <tbody>
-    <% @prez.each do |cargo_prez| %>
+    <% prez.each do |cargo_prez| %>
       <tr>            
         <% cargo_prez.values.each do | value | %>
           <td><%= value %></td>
@@ -38,5 +38,5 @@
 
 <br>
 
-<%= @prez.link_to_new %>
+<%= prez.link_to_new %>
 
