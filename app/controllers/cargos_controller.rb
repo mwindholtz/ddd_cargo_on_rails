@@ -2,7 +2,7 @@ class CargosController < ApplicationController
   
   # GET /cargos
   def index
-    @cargos = Cargo.all
+    @prez = CargoListPresenter.new(Cargo.all)
   end
 
   # GET /cargos/1

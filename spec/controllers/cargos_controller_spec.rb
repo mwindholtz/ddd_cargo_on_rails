@@ -24,7 +24,7 @@ RSpec.describe CargosController, type: :controller do
     it "assigns all cargos as @cargos" do
       cargo = Cargo.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:cargos)).to eq([cargo])
+      expect(assigns(:prez).first.target).to eq(cargo)
     end
   end
 
