@@ -37,6 +37,13 @@ RSpec.describe CargosController, type: :controller do
     end
   end
 
+  describe "GET #show - not_found" do
+    it "raises 404" do
+      expect{ get :show, {:id => 999}, valid_session
+        }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
   describe "GET #new" do
     it "assigns a new cargo as @cargo" do
       get :new, {}, valid_session
