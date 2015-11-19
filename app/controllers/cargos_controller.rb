@@ -22,13 +22,12 @@ class CargosController < ApplicationController
 
   # POST /cargos
   def create
-    cargo = Cargo.new(cargo_params)
-    @prez = CargoPresenter.new(cargo)
+    @prez = Cmds::CargoCreate.new(cargo_params).call
 
-    if cargo.save
-      redirect_to cargo, notice: 'Cargo was successfully created.'
-    else
+    if @prez.target.new_record?
       render :new
+    else
+      redirect_to @prez.target, notice: 'Cargo was successfully created.'
     end
   end
 
