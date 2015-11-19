@@ -43,8 +43,7 @@ class CargosController < ApplicationController
 
   # DELETE /cargos/1
   def destroy
-    @prez = Cmds::CargoFind.new(params[:id]).call   
-    @prez.target.destroy
+    @prez = Cmds::CargoDestroy.new(params[:id]).call 
     redirect_to cargos_url, notice: 'Cargo was successfully destroyed.'
   end
 
