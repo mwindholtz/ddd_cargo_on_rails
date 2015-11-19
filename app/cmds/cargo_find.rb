@@ -10,12 +10,8 @@ module Cmds
     end
 
     def call
-      cargo = Cargo.find_by_id(cargo_id)
-      if cargo
-        Result.ok.add(cargo: cargo) 
-      else
-        Result.status(:not_found).add(cargo_id: cargo_id)     
-      end 
+      cargo = Cargo.find(cargo_id)
+      CargoPresenter.new(cargo) 
     end
   end
 end

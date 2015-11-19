@@ -52,9 +52,8 @@ class CargosController < ApplicationController
 
   private
     def load_cargo
-      result = Cmds::CargoFind.new(params[:id]).call
-      @prez = CargoPresenter.new(result.context.cargo)
-      result.context.cargo
+      @prez= Cmds::CargoFind.new(params[:id]).call
+      @prez.target
     end
 
     # Only allow a trusted parameter "white list" through.
