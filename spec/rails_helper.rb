@@ -68,3 +68,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean         
   end
 end
+
+module Given  
+  module ClassExtensions
+    alias Whereas Given 
+    alias Whereas! Given! 
+  end
+end
