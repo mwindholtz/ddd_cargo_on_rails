@@ -73,19 +73,16 @@ RSpec.describe CargosController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Cargo" do
-        expect {
-          post :create, {:cargo => valid_attributes}, valid_session
-        }.to change(Cargo, :count).by(1)
-      end
+      let(:mock_cargo)       { double(new_record?: false, to_model: Cargo.new, persisted?: true)}
 
-      it "assigns a newly created cargo as @cargo" do
+      it "creates a new Cargo" do
+        expect_any_instance_of(Cmds::CargoCreate).to receive(:call).and_return(double(target: mock_cargo))
         post :create, {:cargo => valid_attributes}, valid_session
-        expect(assigns(:prez).target).to be_a(Cargo)
         expect(assigns(:prez).target).to be_persisted
       end
 
       it "redirects to the created cargo" do
+        expect_any_instance_of(Cmds::CargoCreate).to receive(:call).and_return(double(target: mock_cargo))
         post :create, {:cargo => valid_attributes}, valid_session
         expect(response).to redirect_to(Cargo.last)
       end
@@ -93,11 +90,12 @@ RSpec.describe CargosController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved cargo as @cargo" do
+        expect_any_instance_of(Cmds::CargoCreate).to receive(:call).and_return(double(target: Cargo.new))
         post :create, {:cargo => invalid_attributes}, valid_session
-        expect(assigns(:prez).target).to be_a_new(Cargo)
       end
 
       it "re-renders the 'new' template" do
+        expect_any_instance_of(Cmds::CargoCreate).to receive(:call).and_return(double(target: Cargo.new))
         post :create, {:cargo => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
