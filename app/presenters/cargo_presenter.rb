@@ -17,6 +17,10 @@ class CargoPresenter
     @cargo
   end
   
+  def location_options 
+    Location.selection_options 
+  end  
+  
   def errors
     @cargo.errors
   end

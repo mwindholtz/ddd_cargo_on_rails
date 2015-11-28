@@ -16,11 +16,11 @@
     
     <div> 
        <%= f.label :origin_id, "Origin" %>
-       <%= f.select 'origin_id',  Location.selection_options  %>
+       <%= f.select 'origin_id',  prez.location_options %>
     </div>
     <div> 
        <%= f.label :destination_id, "Destination" %> 
-       <%= f.select 'destination_id',  Location.selection_options  %>
+       <%= f.select 'destination_id', prez.location_options  %>
     </div>
 
     <p><%= f.label :arrival_deadline_on %> 

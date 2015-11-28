@@ -18,7 +18,7 @@ class CargosController < ApplicationController
   # GET /cargos/1/edit
   def edit
     @prez = Cmds::CargoFind.new(params[:id]).call   
-  end
+  end                                                                       
 
   # POST /cargos
   def create
