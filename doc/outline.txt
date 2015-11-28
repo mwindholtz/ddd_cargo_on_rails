@@ -59,15 +59,20 @@ Attempted ideas of separating the Active Record from the biz-entity based on ide
 The DDD Ruby example we found is complex and based on Sinatra. - Another missed warning sign ?
 What we were looking for was an approach that was middle ground.  Something for a mid-sized Rails project that grows up a little bit.
 
+DDD Problem overview.
 
-Coupling & Cohesion
-SOLID
-DDD
-Rails Overview
-Right&Wrong vs Trade-offs 
-Build a DDD code example
-Ref: Uncle Bob’s talk on Interactors
+
+Code Example
+  - Example of Balanceing between Full DDD "Rich Domain Model" and Rails Golden Path 
+  - One possible set of trade-offs, other balance points exist too
+  - Work in Progress 
+  - I hope to build out the complete DDD example for next year with Modules and application Events
   
+
+Future Ruby Tools To watch
+  - ROM http://rom-rb.org
+  - https://github.com/solnic/rodakase "Lightweight web application stack on top of Roda"
+
 Tradeoffs
   Presenter. 
     - added more code in the between controller and view.
@@ -76,8 +81,7 @@ Tradeoffs
 
   Domain model using ActiveRecord.
     + better focus on domain
-    - AR class "repo" methods mash up responsibilities    
-
+    - AR class "repo" methods mash up responsibilities 
 
 Guidelines ...
   Make Trade offs explicit, record context.
@@ -88,4 +92,7 @@ Guidelines ...
   Cmd, Rule, and Process objects to provide logical cohesion
   Presentation and Exhibit objects decouple from framework ActiveSupport 
 
+Random Tips
+  Seperate Account from User 
+  
 
