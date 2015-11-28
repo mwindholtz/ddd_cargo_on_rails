@@ -1,0 +1,91 @@
+
+Who am I.
+  Agile Coach and Developer
+  C++, Smalltalk, Java, 10 years of Ruby.
+  Agile back when it was called "Extreem Programming".
+
+Problem
+  Only Failed projects actually end.
+  Successful projects never end.
+  Tip: Successful projects are living creatures that must be cared for.
+  It works great, how about one more thing... New features.
+  Security patches, library upgrades, language upgrades.
+  Software changes until it ends. (see above for definition of 'end')
+
+Look at Rails 
+  Golden Path Scaffold generation
+  + quick code constuction 
+  + conventions make connecting code to DB easy
+  - no place for logic involving mulitple models
+  - testing gets complicated as system grows
+
+Learning Rails
+  Dryfase model 
+  Whats wrong with this? 
+  Tip: When ever you see a single dimensional scale, ask: what other dimensions are possible?
+  Rails (framework) learning stages vs. OO learning stages are in conflict.                                                                             
+  I noticed this when I started rails, and there was no service-layer.
+  Concerned but Rails was so fun and easy I pushed it away.
+  After a few years upgrades got aggrivating.  Predictable. 
+   
+  PEAA describes p117
+  "Simple Domain Model" domain looks like the DB, 1 model per DB table.
+  "Rich Domain Model" domain looks different from the DB.  Inheritence, Rules, GoF patterns, web of small co-operating objects.
+  Apps often start with a "Simple Domain Model" and grow to need a "Rich Domain Model"
+  * * That is where the war happens. * *
+
+When to start moving toward "Rich Domain Model" ?
+  (1) Too early and coding too much.
+  (2) Too late and code becomes hard to change.
+  Every instance I've seen made mistake #2 
+  Why?  AR makes it easy to keep plugging away.
+
+What to do?  ( - remove - ) 
+  Rates of change. 
+  Ruby upgrades, Rails Upgrades, Libray Upgrades, Additional Features different frequency
+
+Computer Science says 
+  Coupling & Cohesion 
+  Keep similar parts together, keep dissimilar parts apart. 
+
+need to disconnect access from the core-model.
+Need to disconnect the core-model from the Database persistence.
+No SQL?
+Investigated the complete disconnect with a re-write of a major 10 years old application
+Ideas we're separate from input/output and from persistence while staying with RubyOnRails
+Also wanted “fast-tests” 
+Researched other projects that attempted this.  We only found failed projects / Gems.  This should have been a big flashing warning sign.
+Attempted ideas of separating the Active Record from the biz-entity based on ideas from Jim Weirich and Avdi Grimm.  
+The DDD Ruby example we found is complex and based on Sinatra. - Another missed warning sign ?
+What we were looking for was an approach that was middle ground.  Something for a mid-sized Rails project that grows up a little bit.
+
+
+Coupling & Cohesion
+SOLID
+DDD
+Rails Overview
+Right&Wrong vs Trade-offs 
+Build a DDD code example
+Ref: Uncle Bob’s talk on Interactors
+  
+Tradeoffs
+  Presenter. 
+    - added more code in the between controller and view.
+    + removed model references from view
+    + easier testing
+
+  Domain model using ActiveRecord.
+    + better focus on domain
+    - AR class "repo" methods mash up responsibilities    
+
+
+Guidelines ...
+  Make Trade offs explicit, record context.
+  Isolate AR class method calls inside instance methods.
+  Skinny Controllers 
+  Miniimize Class references 
+  Criteria to minimize coupling to AR queries. 
+  Cmd, Rule, and Process objects to provide logical cohesion
+  Presentation and Exhibit objects decouple from framework ActiveSupport 
+
+
