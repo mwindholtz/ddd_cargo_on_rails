@@ -35,6 +35,7 @@ module Tvd
     # Add additional load paths for your own custom dirs
 		config.autoload_paths += %W( #{Rails.root}/app/cmds
                               	 #{Rails.root}/app/presenters
+                              	 #{Rails.root}/app/models/support
                               )
 		
   end
