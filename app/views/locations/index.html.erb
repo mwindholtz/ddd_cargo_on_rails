@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Locations</h1>
+
+<div id="search">
+  <%= form_tag locations_path, method: :get do %>
+    <%= text_field_tag( 'q', nil, class: "text", type: 'text', title:"Search", 
+                       value: @q,  placeholder: "Code"  ) %> 
+    <br/>
+    <input type="submit" value="Find Location Code", autofocus="true" /> 
+  <%- end -%>
+</div>
+
+
+<table>
+  <thead>
+    <tr>
+      <% prez.titles.each do |title| %>
+        <th><%= title %></th>
+      <% end  %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% prez.each do |cargo_prez| %>
+      <tr>            
+        <% cargo_prez.values.each do | value | %>
+          <td><%= exhibit(value, self) %> </td> 
+        <% end %>
+        <td><%= cargo_prez.link_to_show %></td>
+        <td><%= cargo_prez.link_to_edit %></td>
+        <td><%= cargo_prez.link_to_destroy %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= prez.link_to_new %>
+

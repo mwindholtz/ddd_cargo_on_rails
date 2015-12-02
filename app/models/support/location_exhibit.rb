@@ -4,8 +4,12 @@ class LocationExhibit < Exhibit
     object.is_a?(Location)     
   end
   
-  def render_body
-    @context.render(text: "<em title='#{self.name}'>#{self.code}</em>".html_safe ) 
+  def render_body   
+    if @context.prez.try(:show_all)
+      @context.render(text: "<em>#{self.code}</em> #{self.name}".html_safe ) 
+    else
+      @context.render(text: "<em title='#{self.name}'>#{self.code}</em>".html_safe ) 
+    end
   end
   
 end

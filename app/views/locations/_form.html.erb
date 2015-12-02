@@ -1,0 +1,31 @@
+<%= form_for(prez.target) do |f| %>
+  <% if prez.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prez.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% prez.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>    
+      
+    </div>
+  <% end %>
+       
+  <fieldset>
+    
+    <div> 
+       <%= f.label :code %>
+       <%= f.text_field :code %>
+    </div>
+    <div> 
+       <%= f.label :name %> 
+       <%= f.text_field :name %>
+    </div>
+
+  </fieldset>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
