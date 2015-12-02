@@ -10,7 +10,7 @@ if Rails.env.test? || Rails.env.development?
 
     def cargo_attrs(extra ={})
       {
-        origin_id:        singapore.id,
+        origin_id:        singapore.id,             
         destination_id:   long_beach.id,
         arrival_deadline_on: today + 6, 
       }.merge(extra)
