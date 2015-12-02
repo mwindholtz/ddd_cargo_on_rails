@@ -89,7 +89,7 @@ if Rails.env.test? || Rails.env.development?
     end
 
     def time_now(plus_days=0)
-      Time.now + plus_days
+      Time.now + plus_days.days
     end   
                         
     def today
