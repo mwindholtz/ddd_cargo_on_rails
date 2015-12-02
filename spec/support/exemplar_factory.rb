@@ -50,62 +50,41 @@ if Rails.env.test? || Rails.env.development?
       Location.find_or_create_by(code: 'DFW', name: 'Dallas') 
     end
 
-    def hong_kong_to_long_beach_leg
+    def leg(origin, load_at, destination, unload_at)
       Leg.find_or_create_by(
-        load_location_id:   hong_kong.id,
-        load_time:          (time_now + 1.day),
-        unload_location_id: long_beach.id,
-        unload_time:        (time_now + 10.days), 
-        )
-    end
-    
-    def long_beach_to_hong_kong_leg
-      Leg.find_or_create_by(
-        load_location_id:     long_beach.id,
-        load_time:            (time_now + 11.days), 
-        unload_location_id:   hong_kong.id,
-        unload_time:          (time_now + 21.day),
-        )
-    end
-    
-    def long_beach_to_seattle_leg
-      Leg.find_or_create_by(
-        load_location_id:   long_beach.id,
-        load_time:          (time_now + 11.days),
-        unload_location_id: seattle.id,
-        unload_time:        (time_now + 14.days), 
-        )
-    end
-    
-    def seattle_to_singapore_leg
-      Leg.find_or_create_by(
-        load_location_id:   seattle.id,
-        load_time:          (time_now + 16.days),
-        unload_location_id: singapore.id,
-        unload_time:        (time_now + 26.days), 
-        )
-    end
-    
-    def singapore_to_hong_kong_leg
-      Leg.find_or_create_by(
-        load_location_id:   singapore.id,
-        load_time:          (time_now + 16.days),
-        unload_location_id: hong_kong.id,
-        unload_time:        (time_now + 26.days), 
-        )
-    end
-    
-    def seattle_to_denver_leg
-      Leg.find_or_create_by(
-        load_location_id:   seattle.id,
-        load_time:          (time_now + 30.days),
-        unload_location_id: dallas.id,
-        unload_time:        (time_now + 32.days), 
+        load_location:   origin,
+        load_time:       load_at,
+        unload_location: destination,
+        unload_time:     unload_at, 
         )
     end
 
-    def time_now
-      Time.now
+    def hong_kong_to_long_beach_leg
+      leg(hong_kong, time_now(1), long_beach, time_now(10))
+    end
+    
+    def long_beach_to_hong_kong_leg
+      leg(long_beach, time_now(11), hong_kong, time_now(21))
+    end
+    
+    def long_beach_to_seattle_leg
+      leg(long_beach, time_now(11), seattle, time_now(14))
+    end
+    
+    def seattle_to_singapore_leg
+      leg(seattle, time_now(16), singapore, time_now(26))
+    end
+    
+    def singapore_to_hong_kong_leg
+      leg(singapore, time_now(16), hong_kong, time_now(26))
+    end
+    
+    def seattle_to_dallas_leg
+      leg(seattle, time_now(30), dallas, time_now(32))  
+    end
+
+    def time_now(plus_days=0)
+      Time.now + plus_days
     end   
                         
     def today
