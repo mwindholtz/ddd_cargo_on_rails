@@ -4,8 +4,8 @@ if Rails.env.test? || Rails.env.development?
     module_function
     
     def cargo(extra={})
-      attrs = cargo_attrs(extra)  
-      Cargo.create!( attrs )
+      attrs = cargo_attrs(extra)                  
+      Cmds::Create.new(Cargo, attrs).call.target
     end
 
     def cargo_attrs(extra ={})
@@ -18,7 +18,7 @@ if Rails.env.test? || Rails.env.development?
 
     def itinerary(extra = {})
       attrs = itinerary_attrs(extra)
-      Itinerary.create!(attrs)
+      Cmds::Create.new(Itinerary, attrs).call.target
     end
     
     def itinerary_attrs(extra = {})
@@ -29,36 +29,41 @@ if Rails.env.test? || Rails.env.development?
         layover_minutes:   (60 * 24) + 60,
       }.merge(extra)
     end
-    
+
     def singapore
-      Location.find_or_create_by(code: 'SGP', name: 'Singapore')  
-    end
-
-    def hong_kong
-      Location.find_or_create_by(code: 'HKG', name: 'Hong Kong')  
-    end
-
-    def seattle
-      Location.find_or_create_by(code: 'SEA', name: 'Seattle')      
-    end
-
-    def long_beach
-      Location.find_or_create_by(code: 'LGB', name: 'Long Beach')  
+      location('SGP', 'Singapore')
+    end                   
+                          
+    def hong_kong         
+      location('HKG', 'Hong Kong')  
+    end                   
+                          
+    def seattle           
+      location('SEA', 'Seattle')      
+    end                   
+                          
+    def long_beach        
+      location('LGB', 'Long Beach') 
     end
 
     def dallas
-      Location.find_or_create_by(code: 'DFW', name: 'Dallas') 
+      location('DFW', 'Dallas') 
     end
 
     def leg(origin, load_at, destination, unload_at)
-      Leg.find_or_create_by(
+      attrs = {
         load_location:   origin,
         load_time:       load_at,
         unload_location: destination,
-        unload_time:     unload_at, 
-        )
+        unload_time:     unload_at }
+      Cmds::FindOrCreate.new(Leg, attrs).call.target
     end
 
+    def location(code, name)                        
+      attrs = { code: code, name: name }
+      Cmds::FindOrCreate.new(Location, attrs  ).call.target
+    end
+    
     def hong_kong_to_long_beach_leg
       leg(hong_kong, time_now(1), long_beach, time_now(10))
     end
