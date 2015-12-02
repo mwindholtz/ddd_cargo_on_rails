@@ -41,6 +41,6 @@ RSpec.describe RoutingService, type: :model do
   
   context "has deadend" do
     skip
-    Given { legs << exemplar.seattle_to_denver_leg }  # deadend
+    Given { legs << exemplar.seattle_to_dallas_leg }  # deadend
   end
 end
