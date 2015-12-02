@@ -7,6 +7,7 @@ class Exhibit < SimpleDelegator
      LocationExhibit,
      StringExhibit,
      CargoExhibit,
+     LegExhibit,
     ]
   end
 

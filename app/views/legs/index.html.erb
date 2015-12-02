@@ -1,16 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Locations</h1>
-
-<div id="search">
-  <%= form_tag locations_path, method: :get do %>
-    <%= text_field_tag( 'q', nil, class: "text", type: 'text', title:"Search", 
-                       value: @q,  placeholder: "Code"  ) %> 
-    <br/>
-    <input type="submit" value="Find Location Code", autofocus="true" /> 
-  <%- end -%>
-</div>
-
+<h1>Legs</h1>
 
 <table>
   <thead>
