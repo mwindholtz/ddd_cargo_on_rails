@@ -8,4 +8,12 @@ class Itinerary < ActiveRecord::Base
   belongs_to :start_location,   class_name: 'Location' 
   belongs_to :end_location,     class_name: 'Location' 
     
+  def add_leg(leg)
+    @hops ||= 0
+    @hops += 1 
+  end
+    
+  def hops
+    @hops
+  end
 end

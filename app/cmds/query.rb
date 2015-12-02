@@ -1,21 +1,21 @@
 require 'cmds'
 module Cmds
-  class CargoQuery < Cmds::Base
+  class Query < Cmds::GenericBase
     attr_reader :criteria    
 
-    def initialize(criteria)
+    def initialize(klass, criteria)
       @criteria = criteria
-      super()
+      super(klass)
     end
 
     def call
-      CargoListPresenter.new(criteria_query)
+      list_presenter_klass.new(criteria_query)
     end
     
     private            
     
       def target_klass
-        Cargo
+        klass
       end
      
       def criteria_query
