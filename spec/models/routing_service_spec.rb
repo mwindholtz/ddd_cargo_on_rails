@@ -53,8 +53,4 @@ RSpec.describe RoutingService, type: :model do
     Then           { expected_itinerary.hops == 3 }
   end
   
-  context "has deadend" do
-    skip
-    Given { legs << exemplar.seattle_to_dallas_leg }  # deadend
-  end
-end
+end 
