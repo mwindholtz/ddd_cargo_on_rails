@@ -1,3 +1,8 @@
+Original Summary
+
+ Tools like RubyOnRails, MeteorJs, and Volt framework make developing quick and easy because of conventions but also add code coupling which becomes a problem as code grows and ages. We will look coupling issues with frameworks, and provide specific code tips to decouple RubyOnRails business model from the larger framework. Some approaches take an either/or to this problem and dump the framework in favor of a perfect Domain Model. This talk demonstrates how to combine the benefits of Rails framework AND a model that is more independent using ideas from Domain Driven Design. We will cover modeling ideas like: interactors, exhibitors, rule-objects, process-objects, value-objects, ...
+Room Rosewood
+
 
 Who am I.
   Agile Coach and Developer
@@ -94,5 +99,6 @@ Guidelines ...
 
 Random Tips
   Seperate Account from User 
+  http://www.codemash.org/schedule/ 
   
 
