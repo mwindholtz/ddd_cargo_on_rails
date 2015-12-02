@@ -59,6 +59,15 @@ if Rails.env.test? || Rails.env.development?
         )
     end
     
+    def long_beach_to_hong_kong_leg
+      Leg.find_or_create_by(
+        load_location_id:     long_beach.id,
+        load_time:            (time_now + 11.days), 
+        unload_location_id:   hong_kong.id,
+        unload_time:          (time_now + 21.day),
+        )
+    end
+    
     def long_beach_to_seattle_leg
       Leg.find_or_create_by(
         load_location_id:   long_beach.id,
