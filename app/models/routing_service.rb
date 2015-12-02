@@ -6,10 +6,10 @@ class RoutingService
   
   def itinerary(origin, destination, cargo)
     if (origin      == legs.first.load_location) &&
-       (destination == legs.first.unload_location)
+       (destination == legs.last.unload_location)
       result = Result.ok       
       itinerary = Itinerary.new
-      # itinerary.legs(legs.first, legs.last)
+      legs.each{ |leg| itinerary.add_leg(leg) }
       result.add(itinerary: itinerary) 
     else   
       Result.error
