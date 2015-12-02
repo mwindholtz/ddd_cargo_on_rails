@@ -7,6 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div><%= link_to("Home", root_url) %> | 
+     <%= link_to("Cargos", cargos_url) %> | 
+     <%= link_to("Locations", locations_url) %> |
+</div>
 
 <%= yield %>
 
