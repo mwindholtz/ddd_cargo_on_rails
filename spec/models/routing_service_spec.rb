@@ -15,6 +15,7 @@ RSpec.describe RoutingService, type: :model do
       Given(:origin) { singapore  }
       When(:result)  { service.itinerary(origin, destination, cargo) }
       Then           { result.error? }
+      Then           { result.context.message == "no route could be found" }
     end 
     
     context "valid " do        
@@ -24,6 +25,7 @@ RSpec.describe RoutingService, type: :model do
       Then           { result.ok? } 
       Then           { expected_itinerary }
       Then           { expected_itinerary.hops == 1 }
+      Then           { result.context.message == "route found" }
     end 
   end
   

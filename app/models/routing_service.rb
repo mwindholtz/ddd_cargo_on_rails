@@ -10,9 +10,9 @@ class RoutingService
       result = Result.ok       
       itinerary = Itinerary.new
       legs.each{ |leg| itinerary.add_leg(leg) }
-      result.add(itinerary: itinerary) 
+      result.add(itinerary: itinerary, message: "route found") 
     else   
-      Result.error
+      Result.error.add(message: "no route could be found")
     end
   end
   
