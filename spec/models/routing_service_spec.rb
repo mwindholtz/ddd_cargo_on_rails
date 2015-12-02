@@ -5,20 +5,23 @@ RSpec.describe RoutingService, type: :model do
   Given(:legs)    { [] }
   Given(:service) { RoutingService.new(legs) }
   
-  context "1 leg" do  
+  context "1 leg to long_beach" do  
     Given  { legs << exemplar.hong_kong_to_long_beach_leg }
+    Given(:destination) { long_beach }
 
     context "invalid" do        
-      Given(:cargo) { exemplar.cargo(origin_id: singapore.id) }
-      When(:result) { service.itinerary(cargo) }
-      Then          { result.error? }
+      Given(:origin) { singapore  }
+      Given(:cargo)  { exemplar.cargo(origin_id: origin.id) }
+      When(:result)  { service.itinerary(origin, destination, cargo) }
+      Then           { result.error? }
     end 
     
     context "valid " do        
-      Given(:cargo) { exemplar.cargo(origin_id: hong_kong.id) }
-      When(:result) { service.itinerary(cargo) }
-      Then          { result.ok? }
-      Then          { result.context.itinerary }
+      Given(:origin) { hong_kong  }
+      Given(:cargo)  { exemplar.cargo(origin_id: origin.id) }
+      When(:result)  { service.itinerary(origin, destination, cargo) }
+      Then           { result.ok? } 
+      Then           { result.context.itinerary }
     end 
   end
   
