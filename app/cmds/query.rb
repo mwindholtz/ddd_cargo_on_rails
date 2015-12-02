@@ -1,4 +1,3 @@
-require 'cmds'
 module Cmds
   class Query < Cmds::GenericBase
     attr_reader :criteria    

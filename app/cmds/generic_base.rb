@@ -1,5 +1,3 @@
-require 'cmds'
-
 module Cmds
   class GenericBase < Cmds::Base
     attr_reader :klass 

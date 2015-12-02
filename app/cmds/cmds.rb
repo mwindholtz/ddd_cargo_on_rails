@@ -1,10 +1,10 @@
 module Cmds
 end             
-require 'base'
-require 'generic_base'
-require 'create'
-require 'update'
-require 'find'
-require 'find_or_create'
-require 'query'
-require 'destroy'
+require_dependency 'base'
+require_dependency 'generic_base'
+require_dependency 'create'
+require_dependency 'update'
+require_dependency 'find'
+require_dependency 'find_or_create'
+require_dependency 'query'
+require_dependency 'destroy'
