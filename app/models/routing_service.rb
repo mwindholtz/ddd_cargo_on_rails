@@ -8,7 +8,12 @@ class RoutingService
     if (origin      == legs.first.load_location) &&
        (destination == legs.last.unload_location)
       result = Result.ok       
-      itinerary = Itinerary.new
+      itinerary = Itinerary.create(
+        start_location_id: origin.id,
+        end_location_id:   destination.id,
+        arrival_time:      cargo.arrival_deadline_on,
+        layover_minutes: 0
+      )
       legs.each{ |leg| itinerary.add_leg(leg) }
       result.add(itinerary: itinerary, message: "route found") 
     else   

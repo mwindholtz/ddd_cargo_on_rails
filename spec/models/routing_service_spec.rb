@@ -27,6 +27,14 @@ RSpec.describe RoutingService, type: :model do
       Then           { expected_itinerary.hops == 1 }
       Then           { result.context.message == "route found" }
     end 
+    
+    context "persistent itinerary" do
+      Given(:origin)  { hong_kong  }
+      Given!(:result) { service.itinerary(origin, destination, cargo) }
+      When            { expected_itinerary.reload }
+      Then            { expected_itinerary.hops == 1 }
+    end
+    
   end
   
   context "2-leg, 3-location in order" do  
