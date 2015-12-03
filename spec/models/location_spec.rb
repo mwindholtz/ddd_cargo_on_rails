@@ -4,9 +4,11 @@ RSpec.describe Location, type: :model do
   
   context "create" do
     Given!(:original_count) { Location.count }
-    When(:result)           { Location.create(code: 'CVG', name: 'Cincinnati') }
+    When(:result)           { Location.create(code: 'CVG222', name: 'Cincinnati') }
     Then                    { Location.count == original_count + 1 }
-    And                     { result.code == 'CVG' } 
+    Then                    { result.code.instance_of?( UnLocode) } 
+    Then                    { result.code.to_s  == 'CVG222' } 
+    Then                    { result.code.value == 'CVG222' } 
   end
-  
+
 end

@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Legs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <% prez.titles.each do |title| %>
+        <th><%= title %></th>
+      <% end  %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% prez.each do |single_prez| %>
+      <tr>            
+        <% single_prez.values.each do | value | %>
+          <td><%= exhibit(value, self) %> </td> 
+        <% end %>
+        <td><%= single_prez.link_to_show %></td>
+        <td><%= single_prez.link_to_edit %></td>
+        <td><%= single_prez.link_to_destroy %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= prez.link_to_new %>
+

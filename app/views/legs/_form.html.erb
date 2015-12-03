@@ -1,0 +1,35 @@
+<%= form_for(prez.target) do |f| %>
+  <% if prez.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prez.errors.count, "error") %> prohibited this leg from being saved:</h2>
+
+      <ul>
+      <% prez.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>    
+      
+    </div>
+  <% end %>
+       
+  <fieldset>
+
+    <div> 
+       <%= f.label :load_location_id, "Load Location" %>
+       <%= f.select 'load_location_id',  prez.location_options %>
+    </div>
+
+<p> 
+   Needs  load_time:  unload_time:  
+</p>     
+    <div> 
+       <%= f.label :unload_location_id, "Unload Location" %>
+       <%= f.select 'unload_location_id',  prez.location_options %>
+    </div>
+    
+  </fieldset>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,5 +1,3 @@
-require 'cmds'
-
 module Cmds
   class Create < Cmds::GenericBase
 

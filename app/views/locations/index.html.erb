@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Cargos</h1>
+<h1>Locations</h1>
 
 <div id="search">
-  <%= form_tag cargos_path, method: :get do %>
+  <%= form_tag locations_path, method: :get do %>
     <%= text_field_tag( 'q', nil, class: "text", type: 'text', title:"Search", 
-                       value: @q,  placeholder: "Destination_id"  ) %> 
+                       value: @q,  placeholder: "Code"  ) %> 
     <br/>
-    <input type="submit" value="Find Destination", autofocus="true" /> 
+    <input type="submit" value="Find Location Code", autofocus="true" /> 
   <%- end -%>
 </div>
 
@@ -23,14 +23,14 @@
   </thead>
 
   <tbody>
-    <% prez.each do |cargo_prez| %>
+    <% prez.each do |single_prez| %>
       <tr>            
-        <% cargo_prez.values.each do | value | %>
+        <% single_prez.values.each do | value | %>
           <td><%= exhibit(value, self) %> </td> 
         <% end %>
-        <td><%= cargo_prez.link_to_show %></td>
-        <td><%= cargo_prez.link_to_edit %></td>
-        <td><%= cargo_prez.link_to_destroy %></td>
+        <td><%= single_prez.link_to_show %></td>
+        <td><%= single_prez.link_to_edit %></td>
+        <td><%= single_prez.link_to_destroy %></td>
       </tr>
     <% end %>
   </tbody>

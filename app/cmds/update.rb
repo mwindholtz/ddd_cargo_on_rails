@@ -1,4 +1,3 @@
-require 'cmds'
 module Cmds
   class Update < Cmds::GenericBase
 

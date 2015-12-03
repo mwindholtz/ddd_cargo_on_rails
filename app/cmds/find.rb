@@ -1,4 +1,3 @@
-require 'cmds'
 module Cmds
   class Find < Cmds::GenericBase
  

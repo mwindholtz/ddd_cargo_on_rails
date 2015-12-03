@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p> 
+
+<%- prez.show_all = true %>
+<%= exhibit(prez.target, self) %>
+
+<br/>
+<br/>
+<%= prez.link_to_edit %> |
+<%= prez.link_to_index('Back') %>

@@ -10,11 +10,11 @@ def seed_now
   time_now = Time.now
   today    = Date.today
   
-  singapore = Location.find_or_create_by(code: 'SGP', name: 'Singapore')  
-  hong_kong = Location.find_or_create_by(code: 'HKG', name: 'Hong Kong')  
-  seattle = Location.find_or_create_by(code: 'SEA', name: 'Seattle')      
-  long_beach = Location.find_or_create_by(code: 'LGB', name: 'Long Beach')  
-  dallas = Location.find_or_create_by(code: 'DFW', name: 'Dallas') 
+  singapore =  Location.find_or_create_by(code: 'SGP999', name: 'Singapore')  
+  hong_kong =  Location.find_or_create_by(code: 'HKG999', name: 'Hong Kong')  
+  seattle =    Location.find_or_create_by(code: 'SEA999', name: 'Seattle')      
+  long_beach = Location.find_or_create_by(code: 'LGB999', name: 'Long Beach')  
+  dallas =     Location.find_or_create_by(code: 'DFW999', name: 'Dallas') 
 
   Leg.find_or_create_by(
     load_location_id:   hong_kong.id,
