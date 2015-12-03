@@ -1,0 +1,4 @@
+#
+# Change UnLocode to proper formatting
+#
+Location.all.each{|e| e.un_locode = "#{e.un_locode}333"; e.save} ; nil 
