@@ -114,4 +114,7 @@ Random Tips
   Use a layer of Interactors or Command/Present to hide models
   Use non-model objects for structure and support Rules, Processes, Exhibiters  
   Use class level AR methods sparingly, or inside instance methods.
+        
 
+DDD rails: https://github.com/mwindholtz/tools_vs_design
+DDD java:  https://github.com/joolu/ddd-sample
