@@ -31,23 +31,23 @@ if Rails.env.test? || Rails.env.development?
     end
 
     def singapore
-      location('SGP', 'Singapore')
+      location('SGP999', 'Singapore')
     end                   
                           
     def hong_kong         
-      location('HKG', 'Hong Kong')  
+      location('HKG999', 'Hong Kong')  
     end                   
                           
     def seattle           
-      location('SEA', 'Seattle')      
+      location('SEA999', 'Seattle')      
     end                   
                           
     def long_beach        
-      location('LGB', 'Long Beach') 
+      location('LGB999', 'Long Beach') 
     end
 
     def dallas
-      location('DFW', 'Dallas') 
+      location('DFW999', 'Dallas') 
     end
 
     def leg(origin, load_at, destination, unload_at)
