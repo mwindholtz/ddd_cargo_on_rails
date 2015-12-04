@@ -3,10 +3,11 @@
 class VoyageBuilder
   attr_reader :voyage
   
-  def home_port=(location)  
+  def home_port(location)  
     self.prev_location = location
     self.prev_date = Date.today.to_time
     @voyage = Voyage.create!(home_port: location)
+    self
   end
   
   def movement_to(location)

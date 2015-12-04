@@ -2,18 +2,22 @@ require 'rails_helper'
 
 RSpec.describe RoutingService, type: :model do
   include_context 'exemplar'
-  Given(:legs)               { [] }
-  Given(:service)            { RoutingService.new(legs) }
+  Given(:builder)            { VoyageBuilder.new.home_port(origin) }
+  Given(:voyages)            { [ voyage ] }
+  Given(:voyage)             { builder.voyage }
+
+  Given(:service)            { RoutingService.new(voyages) }
   Given(:cargo)              { exemplar.cargo(origin: origin, destination: destination) }
   Given(:expected_itinerary) { result.context.itinerary }
   
   context "1 leg to long_beach" do  
-    Given  { legs << exemplar.hong_kong_to_long_beach_leg }
     Given(:destination) { long_beach }
+    Given               { builder.movement_to(destination) }
 
     context "invalid" do        
-      Given(:origin) { singapore  }
-      When(:result)  { service.itinerary(origin, destination, cargo) }
+      Given(:origin)    { hong_kong  }
+      Given(:lala_land) { dallas  }
+      When(:result)  { service.itinerary(origin, lala_land, cargo) }
       Then           { result.error? }
       Then           { result.context.message == "no route could be found" }
     end 
@@ -47,9 +51,8 @@ RSpec.describe RoutingService, type: :model do
   context "2-leg, 3-location in order" do  
     Given(:origin)      { hong_kong  }
     Given(:destination) { seattle    }
-
-    Given { legs << exemplar.hong_kong_to_long_beach_leg }
-    Given { legs << exemplar.long_beach_to_seattle_leg }
+    Given               { builder.movement_to(long_beach) }
+    Given               { builder.movement_to(seattle) }
 
     context "_hops" do
       When(:result)  { service.itinerary(origin, destination, cargo) }
@@ -69,9 +72,10 @@ RSpec.describe RoutingService, type: :model do
   context "3-leg, 4-location loop in order" do
     Given(:origin)      { singapore  }
     Given(:destination) { seattle    }
-    Given { legs << exemplar.singapore_to_hong_kong_leg  }
-    Given { legs << exemplar.hong_kong_to_long_beach_leg }
-    Given { legs << exemplar.long_beach_to_seattle_leg   }
+    Given               { builder.movement_to(hong_kong) }
+    Given               { builder.movement_to(long_beach) }
+    Given               { builder.movement_to(seattle) }
+    
     When(:result)  { service.itinerary(origin, destination, cargo) }
     Then           { result.ok? } 
     Then           { expected_itinerary }

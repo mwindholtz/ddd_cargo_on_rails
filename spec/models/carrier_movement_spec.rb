@@ -9,4 +9,5 @@ RSpec.describe CarrierMovement, type: :model do
     Then                    { CarrierMovement.count == original_count + 1 }
     Then                    { result }
   end
+  
 end

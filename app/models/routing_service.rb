@@ -1,12 +1,12 @@
 class RoutingService
   
-  def initialize(legs) 
-    @legs = legs
+  def initialize(voyages) 
+    @schedule = voyages.first.schedule
   end
   
   def itinerary(origin, destination, cargo)
-    if (origin      == legs.first.load_location) &&
-       (destination == legs.last.unload_location)
+    if (origin      == movements.first.depart_location) &&
+       (destination == movements.last.arrival_location)
       result = Result.ok       
       itinerary = Itinerary.create(
         start_location_id: origin.id,
@@ -14,7 +14,15 @@ class RoutingService
         arrival_time:      cargo.arrival_deadline_on,
         layover_minutes: 0
       )
-      legs.each{ |leg| itinerary.add_leg(leg) }
+
+      movements.each do |movement| 
+        itinerary.legs.create(
+          load_location:   movement.depart_location,
+          load_time:       movement.depart_at,
+          unload_location: movement.arrival_location,
+          unload_time:     movement.arrival_at,
+        )
+      end
       result.add(itinerary: itinerary, message: "route found") 
     else   
       Result.error.add(message: "no route could be found")
@@ -22,5 +30,10 @@ class RoutingService
   end
   
   private 
-    attr_reader :legs 
+    attr_reader :schedule
+
+    def movements
+      schedule.carrier_movements
+    end
+    
 end

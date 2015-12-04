@@ -13,7 +13,7 @@ RSpec.describe Voyage, type: :model do
 
   context "create with voyage_builder two-loop" do 
     Given(:builder) { VoyageBuilder.new }
-    Given { builder.home_port = hong_kong }
+    Given { builder.home_port(hong_kong) }
     Given { builder.movement_to( long_beach) }
     Given { builder.movement_to( hong_kong)  }
 
