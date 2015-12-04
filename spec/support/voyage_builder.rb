@@ -5,17 +5,19 @@ class VoyageBuilder
   attr_reader :voyage
 
   DEFAULT_DELAY = 2.days
-  
-  def home_port(location)  
-    self.prev_location = location
-    self.prev_date = Date.today.to_time
-    @voyage = Voyage.create!(home_port: location)
-    self
+
+  def initialize(voyage)  
+    @voyage = voyage   
+    if @voyage.hops == 0
+      self.prev_location = voyage.home_port
+      self.prev_date     = Date.today.to_time
+    else
+      self.prev_location = voyage.last_location
+      self.prev_date     = voyage.last_arrival_at
+    end
   end
   
   def movement_to(location)
-    raise Shipping::InvalidBuilderSequence.new("set previous location before adding a movement") unless prev_location
-    raise Shipping::InvalidBuilderSequence.new("set home_port before adding a movement") unless voyage
     departs_at = delay_from(prev_date)
     arrives_at = delay_from(departs_at)
     

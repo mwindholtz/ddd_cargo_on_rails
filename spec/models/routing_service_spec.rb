@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RoutingService, type: :model do
   include_context 'exemplar'
-  Given(:builder)            { VoyageBuilder.new.home_port(origin) }
+  Given(:builder)            { VoyageBuilder.new(Voyage.create!(home_port: origin)) }
   Given(:voyages)            { [ voyage ] }
   Given(:voyage)             { builder.voyage }
 

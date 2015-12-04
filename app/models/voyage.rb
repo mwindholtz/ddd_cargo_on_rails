@@ -12,4 +12,13 @@ class Voyage < ActiveRecord::Base
   def hops
     schedule.hops
   end  
+  
+  def last_location
+    schedule.carrier_movements.last.arrival_location
+  end
+  
+  def last_arrival_at
+    schedule.carrier_movements.last.arrival_at
+  end
+  
 end
