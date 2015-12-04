@@ -16,6 +16,16 @@ if Rails.env.test? || Rails.env.development?
       }.merge(extra)
     end 
 
+    def schedule(extra={})
+      attrs = schedule_attrs(extra)                  
+      Cmds::Create.new(Schedule, attrs).call.target
+    end
+
+    def schedule_attrs(extra ={})
+      {
+      }.merge(extra)
+    end 
+
     def voyage(extra ={})
       attrs = voyage_attrs(extra)  
       Cmds::Create.new(Voyage, attrs).call.target
