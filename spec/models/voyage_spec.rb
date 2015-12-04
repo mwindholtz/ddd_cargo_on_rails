@@ -11,6 +11,22 @@ RSpec.describe Voyage, type: :model do
     Then                    { Schedule.count == original_schedule + 1 }        
   end
 
+  context "create with voyage_builder two-loop" do 
+    Given(:builder) { VoyageBuilder.new }
+    Given { builder.home_port = hong_kong }
+    Given { builder.movement_to( long_beach) }
+    Given { builder.movement_to( hong_kong)  }
+
+    When(:voyage) { builder.voyage }
+    Then { voyage.hops == 2 }
+  end 
+
+  context "voyage_builder fails" do 
+    Given(:builder) { VoyageBuilder.new }
+    When(:result) { builder.movement_to( hong_kong)  }
+    Then { result == Failure( Shipping::InvalidBuilderSequence ) }
+  end 
+
   context "instance exists" do 
     Given(:voyage)  { ExemplarFactory.voyage }
     
