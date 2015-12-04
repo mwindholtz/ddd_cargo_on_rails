@@ -1,2 +1,3 @@
-class CarrierMovement  < ActiveRecord::Base
+class CarrierMovement  < ActiveRecord::Base                                         
+  belongs_to :schedule
 end

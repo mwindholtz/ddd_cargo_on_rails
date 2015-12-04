@@ -8,4 +8,13 @@ RSpec.describe Voyage, type: :model do
     When(:result)           { Voyage.create!( ExemplarFactory.voyage_attrs) }
     Then                    { Voyage.count == original_count + 1 }        
   end
+
+  context "instance exists" do 
+    Given(:voyage)  { ExemplarFactory.voyage }
+    
+    context "_add_movement" do 
+      When(:result) { voyage.add_movement() }
+    end 
+  end 
+  
 end
