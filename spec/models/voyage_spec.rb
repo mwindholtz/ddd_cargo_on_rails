@@ -13,7 +13,7 @@ RSpec.describe Voyage, type: :model do
     Given(:voyage)  { ExemplarFactory.voyage }
     
     context "_add_movement" do 
-      When(:result) { voyage.add_movement() }
+      When(:result) { voyage.add_movement() }     
     end 
   end 
   

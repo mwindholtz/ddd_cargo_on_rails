@@ -32,7 +32,11 @@ if Rails.env.test? || Rails.env.development?
     end
 
     def carrier_movement_attrs(extra ={})
-      {
+      {             
+        depart_location:  hong_kong,
+        depart_at:        time_now(1),          
+        arrival_location: long_beach,
+        arrival_at:       time_now(15)
       }.merge(extra)
     end 
 
@@ -42,7 +46,8 @@ if Rails.env.test? || Rails.env.development?
     end
 
     def voyage_attrs(extra ={})
-      {
+      {      
+        home_port: hong_kong
       }.merge(extra)
     end
 
