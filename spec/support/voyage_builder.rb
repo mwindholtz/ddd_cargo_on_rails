@@ -1,7 +1,10 @@
-# used to generate test objects
+# Used to generate test objects
+# it defaults to a 2 day layover, and a 2-day carrier_movement so that test setup is easier.
 
 class VoyageBuilder
   attr_reader :voyage
+
+  DEFAULT_DELAY = 2.days
   
   def home_port(location)  
     self.prev_location = location
@@ -27,7 +30,7 @@ class VoyageBuilder
     attr_accessor :prev_date
 
     def delay_from(time)
-      time.to_time + 2.days
+      time.to_time + DEFAULT_DELAY
     end
     
 end
