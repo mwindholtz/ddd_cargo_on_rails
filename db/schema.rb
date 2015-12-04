@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 8) do
+ActiveRecord::Schema.define(version: 9) do
 
   create_table "cargos", force: :cascade do |t|
     t.integer  "origin_id",           null: false
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 8) do
     t.datetime "arrival_deadline_on", null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+  end
+
+  create_table "carrier_movements", force: :cascade do |t|
+    t.integer "schedule_id"
   end
 
   create_table "itineraries", force: :cascade do |t|

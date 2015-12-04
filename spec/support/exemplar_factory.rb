@@ -26,6 +26,16 @@ if Rails.env.test? || Rails.env.development?
       }.merge(extra)
     end 
 
+    def carrier_movement(extra={})
+      attrs = schedule_attrs(extra)                  
+      Cmds::Create.new(CarrierMovement, attrs).call.target
+    end
+
+    def carrier_movement_attrs(extra ={})
+      {
+      }.merge(extra)
+    end 
+
     def voyage(extra ={})
       attrs = voyage_attrs(extra)  
       Cmds::Create.new(Voyage, attrs).call.target
