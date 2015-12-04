@@ -5,6 +5,7 @@ class Exhibit < SimpleDelegator
     [
      TimeExhibit,
      LocationExhibit,
+     VoyageExhibit,
      StringExhibit,
      CargoExhibit,
      LegExhibit,
@@ -27,7 +28,12 @@ class Exhibit < SimpleDelegator
   def self.applicable_to?(object)
     false
   end
-
+  
+  # used for rendering nested objects
+  def exhibit(model)
+    Exhibit.exhibit(model, @context)
+  end
+  
   # ClassMethods
 
   def self.exhibit(object, context)
