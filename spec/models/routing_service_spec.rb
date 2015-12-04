@@ -30,9 +30,16 @@ RSpec.describe RoutingService, type: :model do
     
     context "persistent itinerary" do
       Given(:origin)  { hong_kong  }
-      Given!(:result) { service.itinerary(origin, destination, cargo) }
-      When            { expected_itinerary.reload }
+      Given(:result)  { service.itinerary(origin, destination, cargo) }
+      When            { expected_itinerary }
       Then            { expected_itinerary.hops == 1 }
+    end
+
+    context "provides adequate layover" do
+      Given(:origin)   { hong_kong  }
+      Given(:result)   { service.itinerary(origin, destination, cargo) }
+      When(:itinerary) { result.context.itinerary }
+      Then             { ItineraryProvidesAdequateLayoverRule.new(itinerary).satisfied? }
     end
     
   end
@@ -43,10 +50,20 @@ RSpec.describe RoutingService, type: :model do
 
     Given { legs << exemplar.hong_kong_to_long_beach_leg }
     Given { legs << exemplar.long_beach_to_seattle_leg }
-    When(:result)  { service.itinerary(origin, destination, cargo) }
-    Then           { result.ok? } 
-    Then           { expected_itinerary }
-    Then           { expected_itinerary.hops == 2 }
+
+    context "_hops" do
+      When(:result)  { service.itinerary(origin, destination, cargo) }
+      Then           { result.ok? } 
+      Then           { expected_itinerary }
+      Then           { expected_itinerary.hops == 2 }
+    end
+    
+    context "not adaquate layover when multiple hops" do
+      Given(:result)   { service.itinerary(origin, destination, cargo) }
+      When(:itinerary) { result.context.itinerary }
+      Then             { !ItineraryProvidesAdequateLayoverRule.new(itinerary).satisfied? }
+    end
+
   end
   
   context "3-leg, 4-location loop in order" do
