@@ -16,6 +16,41 @@ if Rails.env.test? || Rails.env.development?
       }.merge(extra)
     end 
 
+    def schedule(extra={})
+      attrs = schedule_attrs(extra)                  
+      Cmds::Create.new(Schedule, attrs).call.target
+    end
+
+    def schedule_attrs(extra ={})
+      {
+      }.merge(extra)
+    end 
+
+    def carrier_movement(extra={})
+      attrs = schedule_attrs(extra)                  
+      Cmds::Create.new(CarrierMovement, attrs).call.target
+    end
+
+    def carrier_movement_attrs(extra ={})
+      {             
+        depart_location:  hong_kong,
+        depart_at:        time_now(1),          
+        arrival_location: long_beach,
+        arrival_at:       time_now(15)
+      }.merge(extra)
+    end 
+
+    def voyage(extra ={})
+      attrs = voyage_attrs(extra)  
+      Cmds::Create.new(Voyage, attrs).call.target
+    end
+
+    def voyage_attrs(extra ={})
+      {      
+        home_port: hong_kong
+      }.merge(extra)
+    end
+
     def itinerary(extra = {})
       attrs = itinerary_attrs(extra)
       Cmds::Create.new(Itinerary, attrs).call.target

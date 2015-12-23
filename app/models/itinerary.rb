@@ -7,13 +7,18 @@ class Itinerary < ActiveRecord::Base
 
   belongs_to :start_location,   class_name: 'Location' 
   belongs_to :end_location,     class_name: 'Location' 
+  has_many   :legs,             dependent: :destroy
     
   def add_leg(leg)
-    @hops ||= 0
-    @hops += 1 
+    self.legs.create(
+      load_location_id:      leg.load_location_id,
+      load_time:             leg.load_time,
+      unload_location_id:    leg.unload_location_id,
+      unload_time:           leg.unload_time,
+    )
   end
     
   def hops
-    @hops
+    legs.count
   end
 end

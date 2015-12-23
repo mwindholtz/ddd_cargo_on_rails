@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 5) do
+ActiveRecord::Schema.define(version: 12) do
 
   create_table "cargos", force: :cascade do |t|
     t.integer  "origin_id",           null: false
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 5) do
     t.datetime "arrival_deadline_on", null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+  end
+
+  create_table "carrier_movements", force: :cascade do |t|
+    t.integer  "schedule_id"
+    t.integer  "depart_location_id"
+    t.integer  "arrival_location_id"
+    t.datetime "depart_at"
+    t.datetime "arrival_at"
   end
 
   create_table "itineraries", force: :cascade do |t|
@@ -31,15 +39,24 @@ ActiveRecord::Schema.define(version: 5) do
   end
 
   create_table "legs", force: :cascade do |t|
-    t.integer  "load_location_id",   null: false
-    t.datetime "load_time",          null: false
-    t.integer  "unload_location_id", null: false
-    t.datetime "unload_time",        null: false
+    t.integer  "load_location_id",               null: false
+    t.datetime "load_time",                      null: false
+    t.integer  "unload_location_id",             null: false
+    t.datetime "unload_time",                    null: false
+    t.integer  "itinerary_id",       default: 0, null: false
   end
 
   create_table "locations", force: :cascade do |t|
     t.string "un_locode", null: false
     t.string "name",      null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "voyage_id"
+  end
+
+  create_table "voyages", force: :cascade do |t|
+    t.integer "home_port_id"
   end
 
 end

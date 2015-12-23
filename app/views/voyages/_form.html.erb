@@ -1,0 +1,26 @@
+<%= form_for(prez.target) do |f| %>
+  <% if prez.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prez.errors.count, "error") %> prohibited this voyage from being saved:</h2>
+
+      <ul>
+      <% prez.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>    
+      
+    </div>
+  <% end %>
+       
+  <fieldset>
+    
+    <div> 
+       <%= f.label :home_port_id, "HomePort" %>
+       <%= f.select 'home_port_id',  prez.location_options %>
+    </div>
+  </fieldset>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

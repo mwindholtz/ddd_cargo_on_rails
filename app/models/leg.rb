@@ -7,6 +7,7 @@ class Leg < ActiveRecord::Base
 
   belongs_to :load_location,     class_name: 'Location' 
   belongs_to :unload_location,   class_name: 'Location' 
+  belongs_to :itinerary 
   
 end 
 
