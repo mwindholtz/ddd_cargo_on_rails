@@ -5,16 +5,14 @@ RSpec.describe Auditor, type: :model do
     
   context "_add" do
     When(:result) { auditor.add( self, 'message') }
-    Then { ! auditor.empty? }   
-    And  { ! result }
+    Then { ! result }
     And  { auditor.explain   == 'message' }
   end
   
   context "_add two" do
     Given { auditor.add( self, 'message1') }
     When  { auditor.add( self, 'message2') }
-    Then  { ! auditor.empty? }
-    And   { auditor.explain == 'message1, message2' }
+    Then  { auditor.explain == 'message1, message2' }
   end
   
   context "break on each object" do
