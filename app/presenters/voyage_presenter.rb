@@ -29,6 +29,10 @@ class VoyagePresenter
   def home_port
     target.home_port
   end
+  
+  def available
+    target.available?
+  end
 
   # Links ..........
         

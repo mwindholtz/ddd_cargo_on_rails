@@ -9,6 +9,10 @@ class Voyage < ActiveRecord::Base
     schedule.add_movement(departure_location, depart_at, arrival_location, arrival_at)
   end
   
+  def available?
+    ValidVoyageRule.new(self).satisfied?
+  end
+  
   def hops
     schedule.hops
   end  

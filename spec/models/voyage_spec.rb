@@ -22,18 +22,11 @@ RSpec.describe Voyage, type: :model do
 
   context "instance exists" do 
     Given(:voyage)  { ExemplarFactory.voyage }
-    
-    context "_add_movement one" do 
-      Given!(:original_movements_count)    { CarrierMovement.count }
-      When { voyage.add_movement(hong_kong, Future.new(3).to_time, long_beach, Future.new(13).to_time ) } 
-      Then { voyage.hops == 1 } 
-      Then { CarrierMovement.count == original_movements_count + 1 } 
-    end 
 
-    context "_add_movement two-loop" do 
-      When { voyage.add_movement(hong_kong,  Future.new(3).to_time,  long_beach, Future.new(13).to_time ) }  
-      When { voyage.add_movement(long_beach, Future.new(15).to_time, hong_kong,  Future.new(25).to_time ) } 
-      Then { voyage.hops == 2 }
+    context "_available uses Rule" do 
+      Given { expect_any_instance_of(ValidVoyageRule).to receive(:satisfied?) }  
+      When  { voyage.available? }
+      Then  { }
     end 
 
   end 
