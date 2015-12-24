@@ -1,18 +1,17 @@
 # When an object has interrogation methods like:  #available? returning true/false
 # Sometimes we want to know WHY it returned false.   
-# So we pass in a recital, and add reasons to the recital
-#   available?(recital)
-#  The recital captures the description of why the valuation accieved it's conclusion of (true or false)
+# So we pass in a auditor, and add reasons to the auditor
+# available?(auditor)
+# The auditor captures the description of why the valuation accieved it's conclusion of (true or false)
+# Avdi Grimm calls this concept 'Auditor'.  
 
-class Recital
+class Auditor
   
   class Null      
-    MESSAGE = 'null-recital'
+    MESSAGE = 'null-auditor'
     def add(object, message); false; end 
     def explain(sep =', '); MESSAGE; end
   end
-
-# aka Auditor, avdi grimm calls this concept 'Auditor'.  
   
   Frame = Struct.new(:object, :message)
   def initialize
@@ -24,10 +23,6 @@ class Recital
     false
   end
   
-  def empty?
-    @notes.empty?
-  end
-
   def explain(sep =', ')  
     list(sep)
   end    
