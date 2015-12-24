@@ -25,11 +25,11 @@ RSpec.describe Schedule, type: :model do
       Then  { schedule.hops == 2 }
     end 
 
-    # context "_add_movement, fails, non-connected " do 
-    #   Given         { schedule.add_movement(hong_kong, Future.new(3).to_time,  long_beach, Future.new(13).to_time ) }  
-    #   When(:result) { schedule.add_movement(seattle,   Future.new(15).to_time, hong_kong,  Future.new(25).to_time ) } 
-    #   Then          { result == Failure( Shipping::ImpossibleCarrierMovement ) }
-    # end 
+    context "_add_movement, fails, non-connected " do 
+      Given         { schedule.add_movement(hong_kong, Future.new(3).to_time,  long_beach, Future.new(13).to_time ) }  
+      When(:result) { schedule.add_movement(seattle,   Future.new(15).to_time, hong_kong,  Future.new(25).to_time ) } 
+      Then          { result == Failure( Shipping::ImpossibleCarrierMovement ) }
+    end 
 
   end 
 
