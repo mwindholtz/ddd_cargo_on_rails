@@ -8,18 +8,20 @@ module Cmds
     end
 
     def presenter_klass
-      klass_for("#{klass}Presenter")
+      presenter_klass_for(klass)
     end
 
     def list_presenter_klass
-      klass_for("#{klass}ListPresenter")
+      presenter_klass_for("#{klass}List")
     end
     
     private
-      def klass_for(klass_name)
-        Kernel.const_get(klass_name)
-      end   
-    
+      def presenter_klass_for(klass_name)
+        presenter_name = "#{klass_name}Presenter"
+        Module.const_get(presenter_name)
+      rescue NameError
+        GenericPresenter
+      end
   end
  
 end
