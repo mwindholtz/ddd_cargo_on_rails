@@ -13,7 +13,7 @@ class RoutingService
     @schedule = voyages.first.schedule
   end
   
-  def itinerary(origin, destination, cargo)
+  def itinerary(cargo, origin=nil, destination=nil)
     if (origin      == movements.first.depart_location) &&
        (destination == movements.last.arrival_location)
       result = Result.ok       

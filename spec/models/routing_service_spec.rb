@@ -17,7 +17,7 @@ RSpec.describe RoutingService, type: :model do
     context "invalid" do        
       Given(:origin)    { hong_kong  }
       Given(:lala_land) { dallas  }
-      When(:result)  { service.itinerary(origin, lala_land, cargo) }
+      When(:result)  { service.itinerary(cargo, origin, lala_land) }
       Then           { result.error? }
       Then           { result.context.message == "no route could be found" }
     end 
@@ -25,7 +25,7 @@ RSpec.describe RoutingService, type: :model do
     context "valid " do        
       Given(:origin)    { hong_kong  }
       
-      When(:result)  { service.itinerary(origin, destination, cargo) }
+      When(:result)  { service.itinerary(cargo, origin, destination) }
       Then           { result.ok? } 
       Then           { expected_itinerary }
       Then           { expected_itinerary.hops == 1 }
@@ -34,14 +34,14 @@ RSpec.describe RoutingService, type: :model do
     
     context "persistent itinerary" do
       Given(:origin)  { hong_kong  }
-      Given(:result)  { service.itinerary(origin, destination, cargo) }
+      Given(:result)  { service.itinerary(cargo, origin, destination) }
       When            { expected_itinerary }
       Then            { expected_itinerary.hops == 1 }
     end
 
     context "provides adequate layover" do
       Given(:origin)   { hong_kong  }
-      Given(:result)   { service.itinerary(origin, destination, cargo) }
+      Given(:result)   { service.itinerary(cargo, origin, destination) }
       When(:itinerary) { result.context.itinerary }
       Then             { ItineraryProvidesAdequateLayoverRule.new(itinerary).satisfied? }
     end
@@ -55,14 +55,14 @@ RSpec.describe RoutingService, type: :model do
     Given               { builder.movement_to(seattle) }
 
     context "_hops" do
-      When(:result)  { service.itinerary(origin, destination, cargo) }
+      When(:result)  { service.itinerary(cargo, origin, destination) }
       Then           { result.ok? } 
       Then           { expected_itinerary }
       Then           { expected_itinerary.hops == 2 }
     end
     
     context "not adaquate layover when multiple hops" do
-      Given(:result)   { service.itinerary(origin, destination, cargo) }
+      Given(:result)   { service.itinerary(cargo, origin, destination) }
       When(:itinerary) { result.context.itinerary }
       Then             { !ItineraryProvidesAdequateLayoverRule.new(itinerary).satisfied? }
     end
@@ -76,7 +76,7 @@ RSpec.describe RoutingService, type: :model do
     Given               { builder.movement_to(long_beach) }
     Given               { builder.movement_to(seattle) }
     
-    When(:result)  { service.itinerary(origin, destination, cargo) }
+    When(:result)  { service.itinerary(cargo, origin, destination) }
     Then           { result.ok? } 
     Then           { expected_itinerary }
     Then           { expected_itinerary.hops == 3 }
