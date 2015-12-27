@@ -40,6 +40,18 @@ if Rails.env.test? || Rails.env.development?
       }.merge(extra)
     end 
 
+    def create_voyages
+      voyage = create_one_voyage
+      [ voyage ]
+    end
+
+    def create_one_voyage
+      schedule = voyage(home_port_id: hong_kong.id).schedule
+      schedule.add_movement(hong_kong,  Future.new(3).to_time,  long_beach, Future.new(13).to_time ) 
+      schedule.add_movement(long_beach, Future.new(15).to_time, hong_kong,  Future.new(25).to_time )  
+      schedule.voyage.save
+    end
+    
     def voyage(extra ={})
       attrs = voyage_attrs(extra)  
       Cmds::Create.new(Voyage, attrs).call.target

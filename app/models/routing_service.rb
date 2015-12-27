@@ -9,7 +9,11 @@
 
 class RoutingService
  
-  def initialize(voyages) 
+  def initialize(voyages)  
+    if voyages.empty?
+      raise Shipping::ImpossibleCarrierMovement
+    end
+    
     @schedule = voyages.first.schedule
   end
   

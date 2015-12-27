@@ -10,6 +10,11 @@ RSpec.describe RoutingService, type: :model do
   Given(:cargo)              { exemplar.cargo(origin: origin, destination: destination) }
   Given(:expected_itinerary) { result.context.itinerary }
   
+  context "_new must have some voyages" do
+    When(:result) { RoutingService.new([]) }
+    Then          { result == Failure( Shipping::ImpossibleCarrierMovement ) }
+  end
+  
   context "1 leg to long_beach" do  
     Given(:destination) { long_beach }
     Given               { builder.movement_to(destination) }
