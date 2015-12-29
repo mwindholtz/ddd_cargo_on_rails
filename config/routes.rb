@@ -10,6 +10,13 @@ Rails.application.routes.draw do
   resources :cargos
   resources :locations
   resources :legs
+  resources :itineraries 
+
+  resources :itinerary_bookings, only: [] do
+    collection do
+      post :generate_itinerary
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
