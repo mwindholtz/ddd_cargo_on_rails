@@ -11,8 +11,16 @@ RSpec.describe RoutingService, type: :model do
   Given(:expected_itinerary) { result.context.itinerary }
   
   context "_new must have some voyages" do
-    When(:result) { RoutingService.new([]) }
-    Then          { result == Failure( Shipping::ImpossibleCarrierMovement ) }
+    When(:result)  { RoutingService.new([]) }
+    Then           { result == Failure( Shipping::ImpossibleCarrierMovement, /No Voyages Have been Defined/ ) }
+  end
+  
+  context "_new voyages must have some carrier_movements" do
+    Given(:origin) { hong_kong  }
+    Given(:voyage) { builder.voyage }
+    Given          { voyage.schedule.carrier_movements.clear }
+    When(:result)  { RoutingService.new(voyages) }
+    Then           { result == Failure( Shipping::ImpossibleCarrierMovement, /No Carrier Movements Available/ ) }
   end
   
   context "1 leg to long_beach" do  

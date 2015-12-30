@@ -11,14 +11,18 @@ class RoutingService
  
   def initialize(voyages)  
     if voyages.empty?
-      raise Shipping::ImpossibleCarrierMovement
+      raise Shipping::ImpossibleCarrierMovement.new("No Voyages Have been Defined")
     end
     
     @schedule = voyages.first.schedule
+
+    if movements.empty?
+      raise Shipping::ImpossibleCarrierMovement.new("No Carrier Movements Available")
+    end
   end
   
   def itinerary(cargo, origin=nil, destination=nil)
-    if (origin      == movements.first.depart_location) &&
+    if (origin      == movements.first.depart_location) && 
        (destination == movements.last.arrival_location)
       result = Result.ok       
       itinerary = Itinerary.create(

@@ -8,4 +8,5 @@
 <%= prez.link_to_index('Back') %>
 
 <p> TODO: Button to generate Itinerary</p>
+<%= button_to( "Generate Itinerary", generate_itinerary_itinerary_bookings_path(cargo_id: prez.target.id) ) %>
 <p> TODO: Button to finalize booking</p>
