@@ -33,12 +33,7 @@ module Tvd
     config.active_record.timestamped_migrations = false
 		    
     # Add additional load paths for your own custom dirs
-		config.autoload_paths += %W( #{Rails.root}/app/cmds
-                              	 #{Rails.root}/app/presenters
-                                 #{Rails.root}/app/rules
-                                 #{Rails.root}/app/services
-                              	 #{Rails.root}/app/models/support
-                              )
-		
+		config.autoload_paths += %W( #{Rails.root}/app/models/support
+                               )		
   end
 end
