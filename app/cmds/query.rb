@@ -17,18 +17,8 @@ module Cmds
         klass
       end
      
-      def criteria_query
-        result = criteria.send_to(target_klass).all
-      end
-
-      def criteria_count
-        criteria.add(:count)      
-        criteria.send_to(target_klass)
-      end
-
-      def criteria_exist
-        criteria.add(:exists?)      
-        criteria.send_to(target_klass)
+      def criteria_query       
+        target_klass.criteria_query(criteria)
       end
 
   end
