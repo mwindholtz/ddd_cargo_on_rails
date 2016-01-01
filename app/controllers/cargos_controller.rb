@@ -24,7 +24,7 @@ class CargosController < RestCmdsController
       criteria = Criteria.new
       if q = params[:q]    
         destination_id = (q||'').strip.to_i
-        criteria.where("destination_id = '#{destination_id}'")
+        criteria.where(destination_id: destination_id)
       end
       criteria
     end

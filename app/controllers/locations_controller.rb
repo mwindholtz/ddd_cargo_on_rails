@@ -24,7 +24,7 @@ class LocationsController < RestCmdsController
       criteria = Criteria.new
       if q = params[:q]    
         code = (q||'').strip.to_i
-        criteria.where("code = '#{code}'")
+        criteria.where(code: code)
       end
       criteria
     end

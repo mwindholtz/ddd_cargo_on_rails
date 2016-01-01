@@ -24,7 +24,7 @@ class ItinerariesController < RestCmdsController
       criteria = Criteria.new
       if q = params[:q]    
         code = (q||'').strip.to_i
-        criteria.where("start_location_id = '#{start_location_id}'")
+        criteria.where(start_location_id: start_location_id)
       end
       criteria
     end
