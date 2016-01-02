@@ -26,13 +26,16 @@ RSpec.describe RoutingService, type: :model do
   context "1 leg to long_beach" do  
     Given(:destination) { long_beach }
     Given               { builder.movement_to(destination) }
-
+    
+    
     context "invalid" do        
+      Given!(:original_itinerary_count) { Itinerary.count }      
       Given(:origin)    { hong_kong  }
       Given(:lala_land) { dallas  }
       When(:result)  { service.itinerary(cargo, origin, lala_land) }
       Then           { result.error? }
       Then           { result.context.message == "No Itinerary could be generated" }
+      Then           { Itinerary.count == original_itinerary_count }
     end 
     
     context "valid " do        
@@ -45,11 +48,22 @@ RSpec.describe RoutingService, type: :model do
       Then           { result.context.message == "route found" }
     end 
     
-    context "persistent itinerary" do
+    context "persistent itinerary" do                      
+      Given!(:original_itinerary_count) { Itinerary.count }      
       Given(:origin)  { hong_kong  }
       Given(:result)  { service.itinerary(cargo, origin, destination) }
       When            { expected_itinerary }
       Then            { expected_itinerary.hops == 1 }
+      Then           { Itinerary.count == original_itinerary_count + 1}
+    end
+
+    context "persistent only one itinerary per cargo" do  
+      Given!(:original_itinerary_count) { Itinerary.count }      
+      Given(:origin) { hong_kong  }
+      Given          { service.itinerary(cargo, origin, destination) }
+      Given          { service.itinerary(cargo, origin, destination) }
+      When(:result)  { service.itinerary(cargo, origin, destination) }
+      Then           { Itinerary.count == original_itinerary_count + 1}
     end
 
     context "provides adequate layover" do

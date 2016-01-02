@@ -26,6 +26,7 @@ class RoutingService
     # Matches only first leg of first voyage 
     if (origin      == movements.first.depart_location) && 
        (destination == movements.first.arrival_location)
+      destroy_previous_itineraries(cargo)
       itinerary = build_itinerary(cargo, origin, destination)
       Result.ok.add(itinerary: itinerary, message: "route found", cargo_id: cargo.id) 
     else   
@@ -35,7 +36,11 @@ class RoutingService
   
   private 
     attr_reader :schedule
-    
+
+    def destroy_previous_itineraries(cargo)
+      Itinerary.destroy_all("cargo_id = '#{cargo.id}'")
+    end
+        
     def build_itinerary(cargo, origin, destination)
       itinerary = Itinerary.create(
         cargo:             cargo,

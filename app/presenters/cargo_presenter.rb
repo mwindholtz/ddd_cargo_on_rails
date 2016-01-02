@@ -31,6 +31,14 @@ class CargoPresenter
 
   # Links ..........
         
+  def link_to_itinerary                   
+    if target.itinerary
+      link_to("Itinerary(#{target.itinerary.id}) ", target.itinerary)
+    else
+      'No Itinerary'
+    end
+  end      
+
   def link_to_show
     link_to('Show', target)
   end      

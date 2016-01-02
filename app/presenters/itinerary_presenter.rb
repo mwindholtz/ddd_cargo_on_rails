@@ -24,23 +24,19 @@ class ItineraryPresenter
   def legs
     target.legs
   end
- 
+          
   # Links ..........
-        
+                                             
+  def link_to_cargo
+    if target.cargo
+      link_to("Cargo(#{target.cargo.id}) ", target.cargo)
+    else
+      'No Cargo'
+    end
+  end      
+  
   def link_to_show
     link_to('Show', target)
   end      
-
-  # def link_to_edit
-  #   link_to('Edit', edit_location_path(target))
-  # end      
-
-  def link_to_destroy
-    link_to('Destroy', target, method: :delete, data: { confirm: 'Are you sure?' })
-  end      
-  
-  def link_to_index(label='Index')
-    link_to(label, locations_path)
-  end
   
 end
