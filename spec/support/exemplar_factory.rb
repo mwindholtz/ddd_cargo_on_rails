@@ -69,7 +69,8 @@ if Rails.env.test? || Rails.env.development?
     end
     
     def itinerary_attrs(extra = {})
-      {     
+      {                
+        cargo_id:          nil,  # must pass in a valid cargo
         start_location_id: singapore.id,
         end_location_id:   long_beach.id,
         arrival_time:      time_now + 5.days,

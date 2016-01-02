@@ -9,7 +9,7 @@ module Cmds
     def call   
       routing_service = RoutingService.new(Voyage.all)  
       cargo = Cargo.find(cargo_id)
-      routing_service.itinerary(cargo) 
+      routing_service.itinerary(cargo, cargo.origin , cargo.destination) 
     end 
 
     protected 

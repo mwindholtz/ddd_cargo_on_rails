@@ -5,20 +5,10 @@ RSpec.describe Cmds::GenerateItinerary, type: :model do
   Given(:cargo) { ExemplarFactory.cargo } 
   Given             { exemplar.create_voyages }
 
-  context "_call success" do
-    Given(:itinerary) { Itinerary.create!( ExemplarFactory.itinerary_attrs) }
-    Given             { expect_any_instance_of(RoutingService).to receive(:itinerary).and_return(Result.ok) }
-  
+  context "_call success" do                                        
+    Given             { expect_ant_instance_of(RoutingService).to receive(:itinerary)}
     When(:result)     { Cmds::GenerateItinerary.new(cargo.id).call }
-    Then              { result.ok? }
+    Then              { }
   end 
-
-  # context "_call, no itinerary possible" do
-  #   Given(:itinerary) { Itinerary.create!( ExemplarFactory.itinerary_attrs) }
-  #   Given             { expect_any_instance_of(RoutingService).to receive(:itinerary).and_return(itinerary) }
-  # 
-  #   When(:result)     { Cmds::GenerateItinerary.new(cargo.id).call }
-  #   Then              { result.ok? }
-  # end 
 
 end

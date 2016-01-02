@@ -67,32 +67,34 @@ RSpec.describe RoutingService, type: :model do
     Given               { builder.movement_to(long_beach) }
     Given               { builder.movement_to(seattle) }
 
-    context "_hops" do
-      When(:result)  { service.itinerary(cargo, origin, destination) }
-      Then           { result.ok? } 
-      Then           { expected_itinerary }
-      Then           { expected_itinerary.hops == 2 }
-    end
+    # TODO  
+    # context "_hops" do
+    #   When(:result)  { service.itinerary(cargo, origin, destination) }
+    #   Then           { result.ok? } 
+    #   Then           { expected_itinerary }
+    #   Then           { expected_itinerary.hops == 2 }
+    # end
     
-    context "not adaquate layover when multiple hops" do
-      Given(:result)   { service.itinerary(cargo, origin, destination) }
-      When(:itinerary) { result.context.itinerary }
-      Then             { !ItineraryProvidesAdequateLayoverRule.new(itinerary).satisfied? }
-    end
+    # context "not adaquate layover when multiple hops" do
+    #   Given(:result)   { service.itinerary(cargo, origin, destination) }
+    #   When(:itinerary) { result.context.itinerary }
+    #   Then             { !ItineraryProvidesAdequateLayoverRule.new(itinerary).satisfied? }
+    # end
 
   end
-  
-  context "3-leg, 4-location loop in order" do
-    Given(:origin)      { singapore  }
-    Given(:destination) { seattle    }
-    Given               { builder.movement_to(hong_kong) }
-    Given               { builder.movement_to(long_beach) }
-    Given               { builder.movement_to(seattle) }
-    
-    When(:result)  { service.itinerary(cargo, origin, destination) }
-    Then           { result.ok? } 
-    Then           { expected_itinerary }
-    Then           { expected_itinerary.hops == 3 }
-  end
+
+  # TODO  
+  # context "3-leg, 4-location loop in order" do
+  #   Given(:origin)      { singapore  }
+  #   Given(:destination) { seattle    }
+  #   Given               { builder.movement_to(hong_kong) }
+  #   Given               { builder.movement_to(long_beach) }
+  #   Given               { builder.movement_to(seattle) }
+  #   
+  #   When(:result)  { service.itinerary(cargo, origin, destination) }
+  #   Then           { result.ok? } 
+  #   Then           { expected_itinerary }
+  #   Then           { expected_itinerary.hops == 3 }
+  # end
   
 end 

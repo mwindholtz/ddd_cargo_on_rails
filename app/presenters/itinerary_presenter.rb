@@ -21,6 +21,9 @@ class ItineraryPresenter
     ATTRS.map{|each| self.public_send(each) }
   end
  
+  def legs
+    target.legs
+  end
  
   # Links ..........
         
