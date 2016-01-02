@@ -40,9 +40,9 @@ class RoutingService
           unload_time:     movement.arrival_at,
         )
       end
-      result.add(itinerary: itinerary, message: "route found") 
+      result.add(itinerary: itinerary, message: "route found", cargo_id: cargo.id) 
     else   
-      Result.error.add(message: "no route could be found")
+      Result.error.add(message: "No Itinerary could be generated", cargo_id: cargo.id)
     end
   end
   

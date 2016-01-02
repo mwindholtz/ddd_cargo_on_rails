@@ -32,7 +32,7 @@ RSpec.describe RoutingService, type: :model do
       Given(:lala_land) { dallas  }
       When(:result)  { service.itinerary(cargo, origin, lala_land) }
       Then           { result.error? }
-      Then           { result.context.message == "no route could be found" }
+      Then           { result.context.message == "No Itinerary could be generated" }
     end 
     
     context "valid " do        

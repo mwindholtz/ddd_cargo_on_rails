@@ -9,12 +9,8 @@ module Cmds
     def call   
       routing_service = RoutingService.new(Voyage.all)  
       cargo = Cargo.find(cargo_id)
-      if itinerary = routing_service.itinerary(cargo)  
-        Result.ok.add(itinerary: itinerary, cargo_id: cargo_id)
-      else
-        Result.error.add(message: "No Itinerary could be generated", cargo_id: cargo_id)
-      end
-    end
+      routing_service.itinerary(cargo) 
+    end 
 
     protected 
       attr_reader :cargo_id
