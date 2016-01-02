@@ -8,6 +8,7 @@ class Exhibit < SimpleDelegator
      VoyageExhibit,
      StringExhibit,
      CargoExhibit,
+     CarrierMovementExhibit,
      LegExhibit,
     ]
   end

@@ -34,6 +34,10 @@ class VoyagePresenter
     target.available?
   end
 
+  def carrier_movements
+    target.schedule.carrier_movements
+  end
+
   # Links ..........
         
   def link_to_show
@@ -51,5 +55,10 @@ class VoyagePresenter
   def link_to_index(label='Index')
     link_to(label, voyages_path)
   end
-  
+
+  private 
+    def exhibit(model, context)
+      Exhibit.exhibit(model, context)
+    end
+      
 end

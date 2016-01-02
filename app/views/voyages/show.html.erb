@@ -1,10 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <%= exhibit(prez.target, self) %>
-<div> <%= prez.available %></div>
+<div> Available: <%= prez.available %></div>
 <br/>
 <br/>
 <%= prez.link_to_edit %> |
 <%= prez.link_to_index('Back') %>
 
-<p> TODO: Link to add Movement</p>
+<h3> Carrier Movements</h3>  
+<% prez.carrier_movements.each do |carrier_movement|   %>  
+  <%= exhibit(carrier_movement, self)   %>  <br>
+<% end %>
