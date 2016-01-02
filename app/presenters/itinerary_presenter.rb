@@ -1,5 +1,6 @@
-class ItineraryPresenter
-  include LinkToHelpers
+class ItineraryPresenter 
+  include PresenterBase
+  
   ATTRS =  []
   attr_reader *ATTRS
   
@@ -29,14 +30,14 @@ class ItineraryPresenter
                                              
   def link_to_cargo
     if target.cargo
-      link_to("Cargo(#{target.cargo.id}) ", target.cargo)
+      view_context.link_to("Cargo(#{target.cargo.id}) ", target.cargo)
     else
       'No Cargo'
     end
   end      
   
   def link_to_show
-    link_to('Show', target)
+    view_context.link_to('Show', target)
   end      
   
 end

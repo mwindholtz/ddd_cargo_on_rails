@@ -1,5 +1,5 @@
 class LegPresenter    
-  include LinkToHelpers
+  include PresenterBase
   
   ATTRS =  [:load_location, :unload_location]
   attr_reader *ATTRS
@@ -32,19 +32,19 @@ class LegPresenter
   # Links ..........
         
   def link_to_show
-    link_to('Show', target)
+    view_context.link_to('Show', target)
   end      
 
   def link_to_edit
-    link_to('Edit', edit_leg_path(target))
+    view_context.link_to('Edit', view_context.edit_leg_path(target))
   end      
 
   def link_to_destroy
-    link_to('Destroy', target, method: :delete, data: { confirm: 'Are you sure?' })
+    view_context.link_to('Destroy', target, method: :delete, data: { confirm: 'Are you sure?' })
   end      
   
   def link_to_index(label='Index')
-    link_to(label, legs_path)
+    view_context.link_to(label, view_context.legs_path)
   end  
   
 end

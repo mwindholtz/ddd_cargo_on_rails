@@ -1,5 +1,5 @@
 class CargoPresenter          
-  include LinkToHelpers
+  include PresenterBase
 
   ATTRS =  [:origin,  :destination,  :arrival_deadline_on]
   attr_reader *ATTRS
@@ -33,26 +33,26 @@ class CargoPresenter
         
   def link_to_itinerary                   
     if target.itinerary
-      link_to("Itinerary(#{target.itinerary.id}) ", target.itinerary)
+      view_context.link_to("Itinerary(#{target.itinerary.id}) ", target.itinerary)
     else
       'No Itinerary'
     end
   end      
 
   def link_to_show
-    link_to('Show', target)
+    view_context.link_to('Show', target)
   end      
 
   def link_to_edit
-    link_to('Edit', edit_cargo_path(target))
+    view_context.link_to('Edit', view_context.edit_cargo_path(target))
   end      
 
   def link_to_destroy
-    link_to('Destroy', target, method: :delete, data: { confirm: 'Are you sure?' })
+    view_context.link_to('Destroy', target, method: :delete, data: { confirm: 'Are you sure?' })
   end      
   
   def link_to_index(label='Index')
-    link_to(label, cargos_path)
+    view_context.link_to(label, view_context.cargos_path)
   end
   
 end

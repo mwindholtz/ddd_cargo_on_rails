@@ -1,9 +1,9 @@
 require "delegate"
 class VoyageListPresenter < DelegateClass(Array)
-  include LinkToHelpers
+  include PresenterBase
     
   def initialize(items)
-    super(items.to_a.map{|item| VoyagePresenter.new(item)} )
+    super(items.to_a.map{|item| VoyagePresenter.new(item).set_context(view_context_holder) } )
   end
 
   def titles      
@@ -12,11 +12,11 @@ class VoyageListPresenter < DelegateClass(Array)
   end      
 
   def link_to_index(label='Index')
-    link_to(label, voyages_path)
+    view_context.link_to(label, view_context.voyages_path)
   end
   
   def link_to_new
-    link_to('New Voyage', new_voyage_path)
+    view_context.link_to('New Voyage', view_context.new_voyage_path)
   end
 
 end

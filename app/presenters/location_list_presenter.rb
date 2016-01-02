@@ -1,9 +1,9 @@
 require "delegate"
 class LocationListPresenter < DelegateClass(Array)
-  include LinkToHelpers
+  include PresenterBase
     
   def initialize(items)
-    super(items.to_a.map{|item| LocationPresenter.new(item)} )
+    super(items.to_a.map{|item| LocationPresenter.new(item).set_context(view_context_holder) } )
   end
 
   def titles      
@@ -13,11 +13,11 @@ class LocationListPresenter < DelegateClass(Array)
   end      
 
   def link_to_index(label='Index')
-    link_to(label, locations_path)
+    view_context.link_to(label, view_context.locations_path)
   end
   
   def link_to_new
-    link_to('New Location', new_location_path)
+    view_context.link_to('New Location', view_context.new_location_path)
   end
 
 end
