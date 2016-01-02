@@ -1,10 +1,9 @@
-# For demo simplicity the routing service uses only the first voyage in the list.
-# It also simply starts at the voyage beginning and voyage end.
+# For demo simplicity the routing service uses only the first voyage carrier_movement
 
 # Routing Short cut:
 # 
 # Find a voyage that goes from origin to destination.
-# create iteinerary legs for each of the carrier_movements
+# Create an itinerary leg for the first carrier_movement.
 # 
 
 class RoutingService
