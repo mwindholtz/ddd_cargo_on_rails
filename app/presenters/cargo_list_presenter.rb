@@ -1,6 +1,6 @@
 require "delegate"
 class CargoListPresenter < DelegateClass(Array)
-  include PresenterBase
+  include ListPresenterBase
     
   def initialize(items)
     super(items.to_a.map{|item| CargoPresenter.new(item).set_context(view_context_holder)} )

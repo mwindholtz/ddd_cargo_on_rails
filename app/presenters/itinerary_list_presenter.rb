@@ -1,6 +1,6 @@
 require "delegate"
 class LocationListPresenter < DelegateClass(Array)
-  include PresenterBase
+  include ListPresenterBase
     
   def initialize(items)
     super(items.to_a.map{|item| LocationPresenter.new(item).set_context(view_context_holder) } )
