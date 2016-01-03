@@ -1,4 +1,4 @@
-class UnLocode
+class UnLocode  # < ValueObject  # it does not allow updates to it's state
   attr_reader :value
 
   VALID_PATTERN = /[a-zA-Z]{2}[a-zA-Z2-9]{3}/
