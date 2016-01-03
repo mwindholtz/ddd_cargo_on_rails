@@ -33,6 +33,10 @@ class VoyagePresenter
   def available
     target.available?
   end
+  
+  def why_available
+    target.why_available
+  end
 
   def carrier_movements
     target.schedule.carrier_movements

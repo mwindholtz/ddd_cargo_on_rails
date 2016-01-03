@@ -13,6 +13,12 @@ class Voyage < ActiveRecord::Base
     ValidVoyageRule.new(self).satisfied?
   end
   
+  def why_available
+    auditor = Auditor.new
+    ValidVoyageRule.new(self).satisfied?(auditor)
+    auditor.explain
+  end
+  
   def hops
     schedule.hops
   end  
