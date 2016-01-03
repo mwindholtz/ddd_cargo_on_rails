@@ -11,8 +11,5 @@ module PresenterBase
       @view_context
     end
 
-    def self.append_features(base)
-      super
-    end
 
 end
