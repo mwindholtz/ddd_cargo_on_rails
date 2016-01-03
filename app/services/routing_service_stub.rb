@@ -6,7 +6,7 @@
 # Create an itinerary leg for the first carrier_movement.
 # 
 
-class RoutingService
+class RoutingServiceStub
  
   def initialize(voyages)  
     if voyages.empty?

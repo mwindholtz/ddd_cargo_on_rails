@@ -1,17 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe RoutingService, type: :model do
-  include_context 'exemplar'
+RSpec.describe RoutingServiceStub, type: :model do
+  include_context 'exemplar'                               
   Given(:builder)            { VoyageBuilder.new(Voyage.create!(home_port: origin)) }
   Given(:voyages)            { [ voyage ] }
   Given(:voyage)             { builder.voyage }
 
-  Given(:service)            { RoutingService.new(voyages) }
+  Given(:service)            { RoutingServiceStub.new(voyages) }
   Given(:cargo)              { exemplar.cargo(origin: origin, destination: destination) }
   Given(:expected_itinerary) { result.context.itinerary }
   
   context "_new must have some voyages" do
-    When(:result)  { RoutingService.new([]) }
+    When(:result)  { RoutingServiceStub.new([]) }
     Then           { result == Failure( Shipping::ImpossibleCarrierMovement, /No Voyages Have been Defined/ ) }
   end
   
@@ -19,7 +19,7 @@ RSpec.describe RoutingService, type: :model do
     Given(:origin) { hong_kong  }
     Given(:voyage) { builder.voyage }
     Given          { voyage.schedule.carrier_movements.clear }
-    When(:result)  { RoutingService.new(voyages) }
+    When(:result)  { RoutingServiceStub.new(voyages) }
     Then           { result == Failure( Shipping::ImpossibleCarrierMovement, /No Carrier Movements Available/ ) }
   end
   

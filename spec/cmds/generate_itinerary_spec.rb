@@ -6,7 +6,7 @@ RSpec.describe Cmds::GenerateItinerary, type: :model do
   Given             { exemplar.create_voyages }
 
   context "_call success" do                                        
-    Given             { expect_ant_instance_of(RoutingService).to receive(:itinerary)}
+    Given             { expect_ant_instance_of(RoutingServiceStub).to receive(:itinerary)}
     When(:result)     { Cmds::GenerateItinerary.new(cargo.id).call }
     Then              { }
   end 
