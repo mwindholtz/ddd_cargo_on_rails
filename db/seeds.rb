@@ -21,6 +21,14 @@ def seed_now
   builder.movement_to( long_beach) 
   builder.movement_to( hong_kong)  
 
+  Cargo.create!(origin_id:           hong_kong.id,             
+                destination_id:      long_beach.id,
+                arrival_deadline_on: today + 6) 
+
+  Cargo.create!(origin_id:           seattle.id,    
+                destination_id:      long_beach.id,
+                arrival_deadline_on: today + 9) 
+
   
 end   
 

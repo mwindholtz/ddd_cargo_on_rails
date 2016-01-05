@@ -2,7 +2,7 @@ module ListPresenterBase
   
   def set_context(view_context)
     @view_context = view_context
-    @view_context_holder.set_context(view_context)
+    view_context_holder.set_context(view_context)
     self
   end
  

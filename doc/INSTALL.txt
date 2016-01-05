@@ -1,0 +1,31 @@
+$ git clone git@github.com:mwindholtz/ddd_cargo_on_rails.git
+$ cd ddd_cargo_on_rails
+
+# if using rvm 
+$ cp DOTruby-version .ruby-version 
+$ cp DOTruby-gemset  .ruby-gemset
+$ cd ..
+$ cd -
+
+# 
+$ gem install bundler 
+$ bundle 
+$ rake db:setup 
+$ rspec   # You should see something like the following ( with different numbers )
+
+..........................................................................................................................................................
+
+Finished in 3.18 seconds (files took 1.64 seconds to load)
+154 examples, 0 failures
+
+# start server                                                                                  
+$ rails s
+=> Booting WEBrick              
+=> Rails 4.2.5 application starting in development on http://localhost:3000
+=> Run `rails server -h` for more startup options
+=> Ctrl-C to shutdown server
+[2016-01-05 09:15:20] INFO  WEBrick 1.3.1
+[2016-01-05 09:15:20] INFO  ruby 2.2.3 (2015-08-18) [x86_64-darwin14]
+[2016-01-05 09:15:20] INFO  WEBrick::HTTPServer#start: pid=36148 port=3000
+
+$ open http://localhost:3000
