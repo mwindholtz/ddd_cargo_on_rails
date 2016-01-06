@@ -7,8 +7,9 @@ class LocationListPresenter < DelegateClass(Array)
   end
 
   def titles      
-    [ "Code",
-      "Name",
+    [ 
+      "Name",      
+      "Code",
     ]
   end      
 

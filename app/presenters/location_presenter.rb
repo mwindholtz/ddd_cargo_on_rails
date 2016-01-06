@@ -1,7 +1,7 @@
 class LocationPresenter    
   include PresenterBase
   
-  ATTRS =  [:code, :name]
+  ATTRS =  [:name, :code]
   attr_reader *ATTRS
   attr_accessor :show_all
   
