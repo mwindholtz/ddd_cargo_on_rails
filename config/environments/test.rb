@@ -1,7 +1,7 @@
+RoutingGateway.service = RoutingServiceStub
 
 Rails.application.configure do
 
-  RoutingGateway.service = RoutingServiceStub
 
   # Settings specified here will take precedence over those in config/application.rb.
 
