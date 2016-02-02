@@ -1,0 +1,15 @@
+AllCops:
+  DefaultFormatter: progress
+  TargetRubyVersion: 2.2
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'doc/**/*'
+    - 'public/**/*'
+    - 'script/**/*'
+  
+Style/IndentationConsistency:
+  EnforcedStyle: rails          
+
+Rails:
+  Enabled: true
