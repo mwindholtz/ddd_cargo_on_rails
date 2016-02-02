@@ -2,13 +2,32 @@
 
 <h1>Cargo Shipping Demo with Rails</h1>
 <h2>Domain Driven Design Example</h2>
+<p>* (asterix) means task has been implemented in this application.</p>
 
 <h3>Scenario #1</h3>
 <p>Customer wants to book a cargo between <em>Hong Kong</em> and <em>Long Beach</em>.</p>
 <ol>
-  <li>Create a <strong>Cargo</strong></li>
-  <li>Generate an <strong>Itinerary</strong> based on available <strong>Voyages</strong></li>
+  <li>* Create a <strong>Cargo</strong></li>
+  <li>* Generate an <strong>Itinerary</strong> based on available <strong>Voyages</strong></li>
   <li>Customer accepts <strong>Itinerary</strong></li>
   <li>Book the <strong>Cargo</strong></li>
 </ol>
 
+<h3>Scenario #2</h3>
+<p>Agent wants to make a minor-change the CarrierMovement <em>Long Beach</em> and <em>Seattle</em> because of a delay.  This does not invalidate the current <strong>Itinerary</strong></p>
+<ol>
+  <li>Look up a<strong>CarrierMovement</strong></li>
+  <li>Update the depart_at and arrival_at</li>
+  <li>Eventual Consistancy occurs</li>
+  <li>The Customer times on the <strong>Itinerary</strong> is updated</li>
+</ol>
+
+<h3>Scenario #3</h3>
+<p>Agent wants to make a major-change the CarrierMovement <em>Long Beach</em> and <em>Seattle</em> because of a delay.  This will invalidate the current <strong>Itinerary</strong></p>
+<ol>
+  <li>Look up a<strong>CarrierMovement</strong></li>
+  <li>Update the depart_at and arrival_at</li>
+  <li>Eventual Consistancy occurs</li>
+  <li>The Customer times on the <strong>Itinerary</strong> is invalidated</li>
+  <li>A new <strong>Itinerary</strong> is generated</li>
+</ol>
