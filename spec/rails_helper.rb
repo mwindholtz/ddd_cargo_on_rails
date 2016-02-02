@@ -2,10 +2,10 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
-require "custom_matchers"
+require 'custom_matchers'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -50,13 +50,12 @@ RSpec.configure do |config|
   #
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
-  config.infer_spec_type_from_file_location!    
-  
+  config.infer_spec_type_from_file_location!
+
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-  
-  
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
   end
@@ -66,14 +65,14 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
-    DatabaseCleaner.clean         
+    DatabaseCleaner.clean
   end
 end
 
-module Given  
+module Given
   module ClassExtensions
-    alias Whereas Given 
-    alias Whereas! Given! 
+    alias Whereas Given
+    alias Whereas! Given!
   end
 end
 require "#{Rails.root}/app/cmds.rb"

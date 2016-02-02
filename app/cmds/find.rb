@@ -1,10 +1,9 @@
 module Cmds
   class Find < Cmds::GenericBase
- 
     attr_reader :object_id
-  
+
     def initialize(klass, object_id)
-      @object_id = object_id           
+      @object_id = object_id
       super(klass)
     end
 

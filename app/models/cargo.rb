@@ -5,11 +5,10 @@ class Cargo < ActiveRecord::Base
 
   belongs_to :origin,      class_name: 'Location'
   belongs_to :destination, class_name: 'Location'
-  
-  has_one  :itinerary 
-  
+
+  has_one :itinerary
+
   def describe
     "#{origin.code} => #{destination.code} by #{arrival_deadline_on}"
   end
-     
 end

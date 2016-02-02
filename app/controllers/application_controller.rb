@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app/cmds")
+require_dependency Rails.root.join('app/cmds')
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   protected
+
     attr_reader   :prez
-    helper_method :prez  
-        
+    helper_method :prez
 end

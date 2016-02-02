@@ -1,6 +1,5 @@
 module Cmds
   class FindOrCreate < Cmds::GenericBase
-
     def initialize(klass, attrs)
       @attrs = attrs
       super(klass)
@@ -11,9 +10,8 @@ module Cmds
       presenter_klass.new(object)
     end
 
-    protected 
-      attr_reader :attrs
+    protected
 
+      attr_reader :attrs
   end
- 
 end

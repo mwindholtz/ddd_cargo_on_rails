@@ -1,6 +1,6 @@
 module Cmds
   class Query < Cmds::GenericBase
-    attr_reader :criteria    
+    attr_reader :criteria
 
     def initialize(klass, criteria)
       @criteria = criteria
@@ -10,17 +10,15 @@ module Cmds
     def call
       list_presenter_klass.new(criteria_query)
     end
-    
-    private            
-    
+
+    private
+
       def target_klass
         klass
       end
-     
-      def criteria_query       
+
+      def criteria_query
         target_klass.criteria_query(criteria)
       end
-
   end
- 
 end

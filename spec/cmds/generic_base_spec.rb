@@ -1,18 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Cmds::GenericBase, type: :model do
-
-  context "_presenter_klass, existing LocationPresenter" do
-    Given(:base)  { Cmds::GenericBase.new(Location) } 
+  context '_presenter_klass, existing LocationPresenter' do
+    Given(:base)  { Cmds::GenericBase.new(Location) }
     When(:result) { base.presenter_klass }
-    Then          { result == LocationPresenter  }
+    Then          { result == LocationPresenter }
   end
 
-  context "_presenter_klass, no existing Presenter" do
-    Given(:base)  { Cmds::GenericBase.new(Schedule) } 
+  context '_presenter_klass, no existing Presenter' do
+    Given(:base)  { Cmds::GenericBase.new(Schedule) }
     When(:result) { base.presenter_klass }
-    Then          { result == GenericPresenter  }
-    
+    Then          { result == GenericPresenter }
   end
-
 end

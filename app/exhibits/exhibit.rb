@@ -1,16 +1,15 @@
-# Excerpt From: Avdi Grimm. “Objects on Rails.” iBooks.  p67 ff    
+# Excerpt From: Avdi Grimm. “Objects on Rails.” iBooks.  p67 ff
 class Exhibit < SimpleDelegator
-
   def self.exhibits
     [
-     TimeExhibit,
-     LocationExhibit,
-     VoyageExhibit,
-     StringExhibit,
-     CargoExhibit,
-     CarrierMovementExhibit,
-     ItineraryExhibit,
-     LegExhibit,
+      TimeExhibit,
+      LocationExhibit,
+      VoyageExhibit,
+      StringExhibit,
+      CargoExhibit,
+      CarrierMovementExhibit,
+      ItineraryExhibit,
+      LegExhibit
     ]
   end
 
@@ -23,23 +22,21 @@ class Exhibit < SimpleDelegator
     __getobj__
   end
 
-  def class
-    __getobj__.class
-  end
+  delegate :class, to: :__getobj__
 
-  def self.applicable_to?(object)
+  def self.applicable_to?(_object)
     false
   end
-  
+
   # used for rendering nested objects
   def exhibit(model)
     Exhibit.exhibit(model, @context)
   end
-  
+
   # ClassMethods
 
   def self.exhibit(object, context)
-    exhibits.inject(object) do |object, exhibit|   
+    exhibits.inject(object) do |object, exhibit|
       exhibit.exhibit_if_applicable(object, context)
     end
   end
@@ -51,5 +48,4 @@ class Exhibit < SimpleDelegator
       object
     end
   end
-
 end

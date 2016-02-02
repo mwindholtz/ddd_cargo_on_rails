@@ -1,5 +1,3 @@
 class RoutingGateway
-
-  cattr_accessor  :service
-     
+  cattr_accessor :service
 end

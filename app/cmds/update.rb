@@ -1,8 +1,7 @@
 module Cmds
   class Update < Cmds::GenericBase
-
     def initialize(klass, object_id, attrs)
-      @attrs = attrs   
+      @attrs = attrs
       @object_id = object_id
       super(klass)
     end
@@ -13,8 +12,8 @@ module Cmds
       presenter_klass.new(object)
     end
 
-    protected 
+    protected
+
       attr_reader :attrs, :object_id
   end
-  
 end

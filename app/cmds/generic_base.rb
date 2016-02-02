@@ -1,7 +1,7 @@
 module Cmds
   class GenericBase < Cmds::Base
-    attr_reader :klass 
-    
+    attr_reader :klass
+
     def initialize(klass)
       @klass = klass
       super()
@@ -14,8 +14,9 @@ module Cmds
     def list_presenter_klass
       presenter_klass_for("#{klass}List")
     end
-    
+
     private
+
       def presenter_klass_for(klass_name)
         presenter_name = "#{klass_name}Presenter"
         Module.const_get(presenter_name)
@@ -23,5 +24,4 @@ module Cmds
         GenericPresenter
       end
   end
- 
 end

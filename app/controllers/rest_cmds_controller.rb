@@ -1,12 +1,11 @@
 class RestCmdsController < ApplicationController
-  
-  def index                      
-    @prez = Cmds::Query.new(controlled_klass, search_criteria).call 
+  def index
+    @prez = Cmds::Query.new(controlled_klass, search_criteria).call
     @prez.set_context(view_context)
-  end 
+  end
 
   def show
-    @prez = Cmds::Find.new(controlled_klass, params[:id]).call   
+    @prez = Cmds::Find.new(controlled_klass, params[:id]).call
     @prez.set_context(view_context)
   end
 
@@ -16,9 +15,9 @@ class RestCmdsController < ApplicationController
   end
 
   def edit
-    @prez = Cmds::Find.new(controlled_klass, params[:id]).call  
+    @prez = Cmds::Find.new(controlled_klass, params[:id]).call
     @prez.set_context(view_context)
-  end                                                                       
+  end
 
   def create
     @prez = Cmds::Create.new(controlled_klass, permit_params).call
@@ -32,7 +31,7 @@ class RestCmdsController < ApplicationController
   end
 
   def update
-    @prez = Cmds::Update.new(controlled_klass, params[:id], permit_params).call 
+    @prez = Cmds::Update.new(controlled_klass, params[:id], permit_params).call
     @prez.set_context(view_context)
     if @prez.errors.present?
       render :edit
@@ -42,9 +41,8 @@ class RestCmdsController < ApplicationController
   end
 
   def destroy
-    @prez = Cmds::Destroy.new(controlled_klass, params[:id]).call 
+    @prez = Cmds::Destroy.new(controlled_klass, params[:id]).call
     @prez.set_context(view_context)
     redirect_to controlled_klass_index_url, notice: "#{controlled_klass} was successfully destroyed."
   end
-
 end

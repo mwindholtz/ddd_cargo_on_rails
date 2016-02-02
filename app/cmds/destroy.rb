@@ -1,6 +1,5 @@
 module Cmds
   class Destroy < Cmds::GenericBase
-
     def initialize(klass, object_id)
       @object_id = object_id
       super(klass)
@@ -11,9 +10,9 @@ module Cmds
       object.destroy
       presenter_klass.new(object)
     end
-  
+
     protected
+
       attr_reader :object_id
   end
- 
 end
