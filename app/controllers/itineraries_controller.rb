@@ -21,8 +21,9 @@ class ItinerariesController < RestCmdsController
 
     def search_criteria
       criteria = Criteria.new
-      if q = params[:q]
-        code = (q || '').strip.to_i
+      q = params[:q]
+      if q
+        # code = (q || '').strip.to_i
         criteria.where(start_location_id: start_location_id)
       end
       criteria

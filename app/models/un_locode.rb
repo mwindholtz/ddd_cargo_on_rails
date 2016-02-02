@@ -13,7 +13,7 @@ class UnLocode # < ValueObject  # it does not allow updates to it's state
                code_string.value
              else
                code_string.upcase
-    end
+             end
     valid?
   end
 

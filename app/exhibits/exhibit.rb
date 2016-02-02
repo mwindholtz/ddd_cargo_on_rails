@@ -36,8 +36,8 @@ class Exhibit < SimpleDelegator
   # ClassMethods
 
   def self.exhibit(object, context)
-    exhibits.inject(object) do |object, exhibit|
-      exhibit.exhibit_if_applicable(object, context)
+    exhibits.inject(object) do |obj, exhibit|
+      exhibit.exhibit_if_applicable(obj, context)
     end
   end
 

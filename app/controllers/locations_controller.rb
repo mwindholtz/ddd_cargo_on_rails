@@ -21,7 +21,8 @@ class LocationsController < RestCmdsController
 
     def search_criteria
       criteria = Criteria.new
-      if q = params[:q]
+      q = params[:q]
+      if q
         code = (q || '').strip.to_i
         criteria.where(code: code)
       end

@@ -2,7 +2,7 @@ class CargoPresenter
   include PresenterBase
 
   ATTRS = [:origin, :destination, :arrival_deadline_on].freeze
-  attr_reader *ATTRS
+  attr_reader(*ATTRS)
 
   def initialize(cargo = nil)
     @cargo = cargo || Cargo.new

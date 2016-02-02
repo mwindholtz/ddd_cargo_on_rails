@@ -21,7 +21,8 @@ class VoyagesController < RestCmdsController
 
     def search_criteria
       criteria = Criteria.new
-      if q = params[:q]
+      q = params[:q]
+      if q
         home_port_id = (q || '').strip.to_i
         criteria.where(home_port_id: home_port_id)
       end

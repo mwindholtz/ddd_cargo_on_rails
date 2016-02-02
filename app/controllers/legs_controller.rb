@@ -21,7 +21,8 @@ class LegsController < RestCmdsController
 
     def search_criteria
       criteria = Criteria.new
-      if q = params[:q]
+      q = params[:q]
+      if q
         load_location_id = (q || '').strip.to_i
         criteria.where(load_location_id: load_location_id)
       end
